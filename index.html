@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShortestCource</title>
     <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/sidebar.css">
     <link rel="stylesheet" href="styles/cards.css">
@@ -22,6 +22,7 @@
 
         <!-- Шапка -->
         <div class="header">
+           
             <div class="container">
 
                 <button class="menu-toggle" aria-label="Открыть меню">☰</button>
@@ -36,7 +37,7 @@
                         </a>
                     </div>
                     <div class="contacts-header">
-                        <a href="./order.html" class="tg-link" > </a>
+                        <a href="./order.html" class="tg-link"> </a>
                         <a href="#" class="whatsapp-link"></a>
                         <a href="tel:+79991234567" class="phone-link">
 
@@ -46,6 +47,14 @@
 
                     </div>
                 </div>
+            </div>
+             <div class="container">
+                <nav>
+                    <a href="#" class="nav-link" data-page="home">Главная</a>
+                    <a href="#" class="nav-link" data-page="cart">
+                        Корзина (<span id="cart-count">0</span>)
+                    </a>
+                </nav>
             </div>
         </div>
 
@@ -116,6 +125,17 @@
                         </div>
                     </div>
                 </div>
+                <div id="shopping-cart" class="page">
+                    <h1>Корзина</h1>
+                    <div id="cart-items">
+                        <!-- Здесь будут товары из корзины -->
+                        <p class="empty-cart">Корзина пуста</p>
+                    </div>
+                    <div class="cart-total">
+                        <h3>Итого: <span id="total-price">0</span> ₽</h3>
+                        <button id="checkout-button">Оформить заказ</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -129,5 +149,7 @@
     </div>
 </body>
 <script src="js/script.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
 
 </html>
