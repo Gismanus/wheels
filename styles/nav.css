@@ -1,0 +1,40 @@
+.main-nav {
+    display: flex;
+
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #1e90ff;
+    background-color: rgba(30, 144, 255, 0.1);
+    
+}
+
+.nav-link.active {
+    color: #ffffff;
+    background-color: #1e90ff;
+    box-shadow: 0 2px 4px rgba(30, 144, 255, 0.3);
+    border-bottom: 2px solid #1e90ff;
+}
+
+.page {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+    padding: 20px;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+}
