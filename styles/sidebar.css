@@ -2,6 +2,7 @@
 .sidebar {
     width: 250px;
     flex-shrink: 0; /* Не сжимается */
+    align-items: stretch;
     background-color: #ffffff;
     border: 1px solid #1e90ff;
     border-radius: 4px;
@@ -17,21 +18,13 @@
 }
 
 .categories li {
-    margin-bottom: 8px;
+
 }
 
 .categories a {
-    display: block;
-    padding: 8px 12px;
-    color: #333;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.2s;
 }
 
 .categories a:hover {
-    background: #f8f9fa;
-    color: #1e90ff;
 }
 
 .sidebar-contacts {
