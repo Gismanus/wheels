@@ -1,0 +1,38 @@
+.content {
+    padding: 0 1rem 8rem;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto
+}
+
+.content-box {
+    max-width: 120rem;
+    margin: 0 auto
+}
+
+.content-box > *:last-child {
+    margin-bottom: 0
+}
+
+
+.main-consult {
+    text-align: left;
+    font-weight: 400;
+    padding-left: 4rem;
+    padding-right: 4rem
+}
+
+.main-consult img {
+    border-radius: 999px
+}
+
+.main-consult .h3,.main-consult .h4 {
+    margin-bottom: 0
+}
+
+.main-consult-state {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #838383
+}

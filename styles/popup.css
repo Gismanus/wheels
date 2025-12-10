@@ -1,0 +1,366 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.75);
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    letter-spacing: -0.36em;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease
+}
+
+.popup .popup-box {
+    -webkit-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    transform: scale(0.5)
+}
+
+.popup::before {
+    display: inline-block;
+    content: '';
+    height: 100%;
+    width: 1px;
+    vertical-align: middle
+}
+
+.popup.active {
+    width: auto;
+    opacity: 1;
+    overflow-y: scroll;
+    min-width: 320px
+}
+
+.popup.active .popup-box {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1)
+}
+
+.popup-box {
+    display: inline-block;
+    letter-spacing: normal;
+    vertical-align: middle;
+    max-width: 57rem;
+    width: 94%;
+    position: relative;
+    text-align: left;
+    background: #fff;
+    -webkit-box-shadow: 0 0.3rem 4.6rem 0 rgba(60, 60, 60, 0.2);
+    box-shadow: 0 0.3rem 4.6rem 0 rgba(60, 60, 60, 0.2);
+    border-radius: 1rem;
+    margin: 15px 0;
+    padding: 4rem 3rem;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease
+}
+
+.close-popup {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    height: 1rem;
+    width: 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 1;
+    color: #b4b4b4;
+    display: none
+}
+
+.popup.active .close-popup {
+    display: block
+}
+
+.close-popup:hover {
+    color: #187abc
+}
+
+body.hidden {
+    overflow-y: hidden
+}
+
+.none {
+    display: none
+}
+
+.popup-title {
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 3.3rem
+}
+
+#p-card-data .popup-box {
+    max-width: 43rem
+}
+
+.ocfilter-options .btn {
+    margin: 0 10px 5px 0;
+    border-radius: 1rem;
+    text-transform: none;
+    padding: .7rem 1rem
+}
+
+.ocfilter-options .btn i {
+    margin-left: 5px
+}
+
+.form-card-data-box {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin: 0 -0.5rem 0.8rem;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.form-card-data-box>div {
+    padding: 0 0.5rem
+}
+
+.form-card-data-box>div>*:last-child {
+    margin-bottom: 0
+}
+
+.form-card-data-box label {
+    font-size: 1.7rem
+}
+
+.form-coment textarea {
+    height: 30.8rem
+}
+
+#p-filter .popup-box {
+    max-width: 35rem
+}
+
+.form-filter {
+    border-top: 0.1rem solid #e6e6e6;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease
+}
+
+.form-filter:first-child {
+    border-top: 0
+}
+
+.form-filter.active {
+    padding-bottom: 2rem
+}
+
+.form-filter.active .form-filter-content {
+    opacity: 1;
+    height: auto;
+    overflow: visible
+}
+
+.list-filter {
+    list-style: none;
+    margin: 0
+}
+
+.list-filter>li {
+    padding: 0.7rem 0 0
+}
+
+.list-filter_limit {
+    max-height: 180px;
+    overflow: hidden
+}
+
+.list-filter>li>*:last-child {
+    margin-bottom: 0
+}
+
+.list-filter>li:first-child {
+    padding-top: 0
+}
+
+.form-filter-name {
+    position: relative;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.4;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 5.8rem;
+    padding: 1rem 1.5rem 1rem 0;
+    cursor: pointer
+}
+
+.form-filter-name-count {
+    color: #187ABC;
+    font-size: 1.3rem;
+    margin-left: .5rem
+}
+
+.form-filter-name i {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #adadad;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 1rem
+}
+
+.form-filter-content {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease
+}
+
+.all-filter {
+    text-align: center;
+    margin: 0.9rem 0 0;
+    line-height: 1.4
+}
+
+.all-filter a {
+    text-decoration: none;
+    border-bottom: 0.1rem dashed #848484;
+    color: #848484;
+    font-size: 1.4rem
+}
+
+.form-filter .name {
+    position: relative;
+    font-size: 1.6rem;
+    font-weight: 700;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 2rem 0 1rem;
+    cursor: pointer;
+    line-height: 1.4
+}
+
+#p-thx .popup-box {
+    max-width: 53.5rem
+}
+
+.popup-thx {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0 auto;
+    line-height: 1.5;
+    padding: 2rem 0
+}
+
+.popup-thx>*:last-child {
+    margin-bottom: 0
+}
+
+.popup-thx img {
+    margin: 0 auto 3rem
+}
+
+.popup-thx .number {
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: #187abc;
+    margin: 0 0 0.5rem
+}
+
+.popup-thx .name {
+    font-size: 3.4rem;
+    font-weight: 500;
+    margin: 0 0 1.5rem
+}
+
+
+
+*::-webkit-input-placeholder {
+    opacity: 1
+}
+
+*:-moz-placeholder {
+    opacity: 1
+}
+
+*::-moz-placeholder {
+    opacity: 1
+}
+
+*:-ms-input-placeholder {
+    opacity: 1
+}
+
+.ocf-option-values .scale {
+    margin: 1.7rem 1rem;
+    font-size: 12px
+}
+
+.popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: block;
+    max-width: 276px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: normal;
+    line-break: auto;
+    font-size: 0.875rem;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem
+}
+
+.popover .arrow {
+    position: absolute;
+    display: block;
+    width: 1rem;
+    height: 0.5rem;
+    margin: 0 0.3rem
+}
+
+.popover .arrow::before,
+.popover .arrow::after {
+    position: absolute;
+    display: block;
+    content: "";
+    border-color: transparent;
+    border-style: solid
+}

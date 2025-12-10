@@ -1,0 +1,230 @@
+.btn {
+    -webkit-appearance: none;
+    appearance: none;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    Justify-content: center;
+    background: #187abc;
+    border: 0;
+    border-radius: 10rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 1.3rem 5.5rem;
+    min-width: 20rem;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    text-align: center
+}
+
+.btn:hover {
+    background: #19b9e6
+}
+
+.btn-secondary {
+    background-color: #0EB9E5
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem
+}
+
+.btn-bordered {
+    background: none;
+    border: 1px solid #187abc;
+    color: #187abc;
+    padding: 1rem 2rem
+}
+
+.btn.btn-small {
+    line-height: 1.35;
+    font-size: 1.3rem;
+    padding: 1.1rem 1.3rem;
+    min-width: 18.5rem
+}
+
+.btn.btn-md {
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem
+}
+
+.btn .icon-arrow-down {
+    line-height: 0;
+    margin: 0 0 0 1rem;
+    font-size: 1rem
+}
+
+.btn .icon-basket {
+    margin: 0 0 0 2rem;
+    font-size: 2.4rem;
+    line-height: 0
+}
+
+.btn .ic-plus {
+    font-size: 1.7rem;
+    font-style: normal;
+    line-height: 0;
+    margin: 0 1rem 0 0
+}
+
+.btn .icon-load {
+    font-size: 1.5rem;
+    font-style: normal;
+    line-height: 0;
+    margin: 0 1rem 0 0
+}
+
+.btn [class^="icon-"] {
+    vertical-align: middle
+}
+
+.icon-filter {
+    background: url() no-repeat;
+    width: 17px;
+    height: 17px;
+    line-height: 0;
+    margin-right: .5rem
+}
+
+.btn.btn-yellow {
+    background: #f79100
+}
+
+.btn.btn-yellow:hover {
+    background: #fbb450
+}
+
+.btn.btn-little {
+    font-size: 1.2rem;
+    line-height: 1.45;
+    padding: 0.8rem 1.5rem;
+    min-width: 15rem
+}
+
+.btn-center {
+    text-align: center
+}
+
+.btn.btn-inline {
+    width: auto;
+    min-width: auto
+}
+
+a:hover .link-more {
+    background: #19b9e6
+}
+
+.btn[disabled] {
+    opacity: .4;
+    filter: grayscale(60%);
+    cursor: not-allowed
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 999px;
+    line-height: 1
+}
+
+.badge-light {
+    background-color: #fff;
+    color: #000
+}
+
+.btn .badge {
+    font-size: 1rem
+}
+
+.btn .badge:last-child {
+    margin-left: .5rem
+}
+
+.link-more {
+    display: inline-block;
+    height: 2.9rem;
+    width: 2.9rem;
+    text-align: center;
+    border-radius: 50%;
+    background: #d0d0d0;
+    font-size: 1rem;
+    color: #fff;
+    margin: 0 0 0 0.3rem;
+    position: relative;
+    top: 0.7rem;
+    margin: -2.5rem 0 0;
+    line-height: 2rem;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease
+}
+
+.link-more::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin: 0 0 0 0.1rem;
+    /* font-family: ; */
+    content: '\e900';
+    z-index: 5
+}
+
+
+
+
+.btn-circle {
+    display: block;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border-color: transparent;
+    color: #fff;
+    text-decoration: none;
+    background: #187abc;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.btn-circle i.icon-arrow {
+    font-size: 1rem
+}
+
+.btn-circle:hover {
+    background: #19b9e6
+}
+
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none
+}

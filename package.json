@@ -1,0 +1,23 @@
+{
+  "name": "wheels",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000w\u0000h\u0000e\u0000e\u0000l\u0000s\u0000\r\u0000 \u0000",
+  "homepage": "https://github.com/Gismanus/wheels#readme",
+  "bugs": {
+    "url": "https://github.com/Gismanus/wheels/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gismanus/wheels.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jsdom": "^27.3.0"
+  }
+}
