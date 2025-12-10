@@ -1,6 +1,3 @@
-$(window).on('resize', function () {
-    initMobileSlider();
-});
 $('.sliderPiculi img').hover(function () {
     $(this).attr('src', $(this).data('gif'));
 }, function () {
