@@ -7,5 +7,4 @@ document.querySelector('a.header-basket').addEventListener('click', function(e) 
     .then(data => {
         document.querySelector('.content-box').innerHTML = data.content;
     })
-    .catch(error => console.error('Error:', error));
 });
