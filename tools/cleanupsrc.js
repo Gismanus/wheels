@@ -2,7 +2,7 @@ const { JSDOM } = require('jsdom');
 const fs = require('fs');
 
 // Читаем HTML
-const html = fs.readFileSync('../index.html', 'utf-8');
+const html = fs.readFileSync('../index-updated.html', 'utf-8');
 const dom = new JSDOM(html);
 const document = dom.window.document;
 
