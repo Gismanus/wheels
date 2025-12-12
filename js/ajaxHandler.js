@@ -3,7 +3,7 @@ document.querySelector('a.header-basket').addEventListener('click', function(e) 
     e.preventDefault();
     
     fetch('/ajax_handler.php')
-        
+        .then(response => response.json())
         .then(data => {
             document.querySelector('.content-box').innerHTML = data.content;
         });

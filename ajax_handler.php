@@ -1,4 +1,7 @@
+<?php echo "OK"; exit; ?>
 <?php
+
+
 header('Content-Type: application/json');
 
 $html_block = '
