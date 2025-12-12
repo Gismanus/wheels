@@ -1,8 +1,8 @@
-// $('.header-basket').click(function(e) {
-//     e.preventDefault();
-//     // Загружаем из basket.html блок с классом .cart-content
-//     $('.content').load('basket.html .cart-content');
-// });
+$('.header-basket').click(function(e) {
+    e.preventDefault();
+    // Загружаем из basket.html блок с классом .cart-content
+    $('.content').load('basket.html .cart-content');
+});
 $('.menu a[href^="/"]').click(function(e) {
     e.preventDefault();
     const page = $(this).attr('href').replace('/', '') || 'index';
