@@ -18,8 +18,7 @@
                 </div>
                 <div class="basket-item">
                     <div class="col-image">
-                        <a href="/"><img src="./images/bbbdec5b1abeb9923ddb186685f5dd47.jpg" alt=""
-                                title=""
+                        <a href="/"><img src="./images/bbbdec5b1abeb9923ddb186685f5dd47.jpg" alt="" title=""
                                 class="img-thumbnail"></a>
                     </div>
                     <div class="col-name">
@@ -80,8 +79,7 @@
                 <div class="basket-item">
                     <div class="col-image">
                         <a href="/"><img src="./images/bbbdec5b1abeb9923ddb186685f5dd47.jpg" alt="с увлажнителем"
-                                title=""
-                                class="img-thumbnail"></a>
+                                title="" class="img-thumbnail"></a>
                     </div>
                     <div class="col-name">
                         <div class="name">
@@ -164,8 +162,8 @@
                     </div>
                     <!-- <label>E-mail:</label> -->
                     <div class="form-element" style="display: none;">
-                        <input tabindex="2" type="text" id="email" class="tx" name="email" value="info@med-ob.ru"
-                            placeholder="email" required="">
+                        <input tabindex="2" type="text" id="email" class="tx" name="email" value="" placeholder="email"
+                            required="">
                     </div>
                     <label>Телефон:</label>
                     <div class="form-element">
@@ -175,7 +173,7 @@
                     <label>Адрес:</label>
                     <div class="form-element">
                         <input tabindex="4" type="text" class="tx" name="address_1" id="address"
-                            placeholder="м. Савеловская, ул. Нижняя Масловка, д. 15, корп. 6" required="">
+                            placeholder="Москва, ул. Думская" required="">
                     </div>
                     <label>Комментарий к заказу:</label>
                     <div class="form-element">
@@ -278,6 +276,33 @@
                 });
             });
 
+        });
+        document.getElementById('button_cart').addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            const form = document.querySelector('.basket-form');
+            const formData = {
+                lastname: form.lastname.value,
+                telephone: form.telephone.value,
+                address_1: form.address_1.value,
+                comment: form.comment.value,
+                email: form.email.value
+            };
+
+            try {
+                const response = await fetch('/api/order.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                alert(result.success ? '✅ Заказ оформлен!' : '❌ Ошибка: ' + result.error);
+
+                if (result.success) form.reset();
+            } catch (error) {
+                alert('❌ Ошибка отправки заказа');
+            }
         });
     </script>
 </main>
