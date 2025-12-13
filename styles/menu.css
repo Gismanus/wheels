@@ -51,7 +51,6 @@
 .menu-drop {
     position: absolute;
     top: 100%;
-    left: -20rem;
     opacity: 0;
     height: 0;
     overflow: hidden;
@@ -63,7 +62,7 @@
 
 .menu-drop-box {
     width: 106.4rem;
-    border: 0.2rem solid #187abc;
+    border: 0.2rem solid #355130b0;
     border-radius: 1rem;
     background: #fff;
     text-align: left;
@@ -83,11 +82,10 @@
     left: 0;
     height: 3rem;
     width: 3rem;
-    background: #187abc;
+    background: #123ea5;
     border-radius: 50%;
     position: absolute;
     top: -1.5rem;
-    left: 23rem;
     z-index: -1
 }
 
