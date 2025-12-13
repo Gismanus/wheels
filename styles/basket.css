@@ -1,7 +1,8 @@
 .basket {
     border: 0.2rem solid #ebebeb;
     border-radius: 1rem;
-    margin: 0 0 1.6rem
+    margin: 0 0 1.6rem;
+    overflow-y: scroll;
 }
 
 .basket-head {
@@ -294,3 +295,4 @@
 .basket-coupon {
     margin-bottom: 6.5rem
 }
+
