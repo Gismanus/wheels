@@ -1,0 +1,80 @@
+.light-box {
+    display: block;
+    border-radius: 10px;
+    background-color: #F0F6FA;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    line-height: 1.2;
+    font-weight: 400
+}
+
+.light-box_secondary {
+    background: #F6EFE8
+}
+
+.light-box_bordered {
+    background: none;
+    border: 1px solid #CDBAA7
+}
+.list-category {
+    list-style: none;
+    Justify-content: center;
+    margin-top: -2rem
+}
+
+.list-category > li {
+    padding-top: 2rem
+}
+
+.list-category-main-item,.list-category-main-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height:0;
+    box-sizing: border-box
+}
+
+
+/* Контейнер картинки */
+.list-category-main-item > a:first-child {
+    flex: 1 1 0; /* grow, shrink, basis */
+    min-height: 0; /* Ключевое свойство! */
+    overflow: hidden; /* Скрывает выходящие части */
+}
+
+/* Сама картинка */
+.list-category-main-item > a:first-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Обрезает или вписывает */
+    display: block;
+}
+
+
+
+.list-category-main-item img {
+   
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+
+.list-category-main-filter {
+    border: 1px solid #F0F6FA;
+    padding: 1.5rem;
+    cursor: pointer;
+    position: relative
+}
+
+.list-category-main-filter:hover {
+    border-color: #1471B7
+}
+
+.list-category-main-filter img {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto
+}
