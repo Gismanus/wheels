@@ -56,7 +56,9 @@ body {
     min-height: 100%;
     color: #232323;
     background: #fff;
-    /* font: ; */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #000;
     overflow-y: scroll
 }
 
@@ -80,8 +82,8 @@ sup {
 }
 
 a {
-    text-decoration: underline;
-    color: #187abc;
+    text-decoration: none;
+    color: #2e3539;
     text-decoration-skip-ink: none
 }
 
