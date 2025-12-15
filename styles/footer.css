@@ -37,6 +37,11 @@
     list-style: none
 }
 
+.footer img {
+        margin: 0px 15px;
+}
+
+
 .footer-phone {
     font-size: 2.4rem;
     font-weight: 400;
@@ -87,3 +92,4 @@ a.footer-title {
 .footer-social a:hover {
     background: #19b9e6
 }
+
