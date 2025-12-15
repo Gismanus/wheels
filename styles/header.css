@@ -117,14 +117,15 @@
 
 .header-basket .number {
     position: absolute;
-    top: 0;
-    right: 0;
-    height: 2rem;
+        bottom: -5;
+
+    right: 10px;
+    height: 15px;
     min-width: 2rem;
     text-align: center;
-    padding: 0 0.3rem;
-    line-height: 2rem;
-    font-size: 1.3rem;
+    padding: 0.3rem 0.3rem;
+    line-height: 1rem;
+    font-size: 1rem;
     color: #fffefe;
     font-weight: 700;
     background: #19b9e6;

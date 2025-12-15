@@ -272,6 +272,7 @@ label.error {
 
 .check label input {
     position: absolute;
+    background-image: url('images/icons/checkbox.svg') no-repeat;
     top: 0;
     left: 0;
     opacity: 0
@@ -291,8 +292,8 @@ label.error {
 
 .check label i::before {
     display: block;
-    font-family: 'icomoon';
-    content: '\e903';
+    content: '';
+    
     font-size: 0.8rem;
     position: absolute;
     top: 50%;
@@ -321,8 +322,12 @@ label.error {
 }
 
 .check label input:checked + i {
+    background-color: #33bdef;
     border-color: #187abc;
-    background: #187abc
+    background: url('/images/icons/checkbox.svg') #33bdef;
+    background-size: 100% 100%;
+    height: 18px;
+    width: 18px;
 }
 
 .check label input:checked + i + span {
