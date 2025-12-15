@@ -1,0 +1,25 @@
+[class^="icon-"] {
+    display: block;
+    background: #000;
+    height: 24px;
+    width: 24px;
+}
+
+.icon-basket {
+    background: url(../images/icons/icon-basket.svg);
+}
+
+.icon-search{
+    background: url(../images/icons/icon-search.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-time{
+    background: url(../images/icons/icon-time.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-tg{
+    background: url(../images/icons/icon-tg.svg) no-repeat;
+    background-size: 100% 100%;
+}

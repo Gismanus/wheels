@@ -42,7 +42,7 @@
     margin: 0 -2.5rem 2.4rem
 }
 
-.header-data > li {
+.header-data>li {
     padding: 0 2.5rem;
     line-height: 1
 }
@@ -112,12 +112,12 @@
     line-height: 1;
     font-size: 2.6rem;
     color: #b7b7b7;
-    margin: 0 1.5rem 0 0
+    margin: 0 1rem 0 0
 }
 
 .header-basket .number {
     position: absolute;
-        bottom: -5;
+    bottom: -5;
 
     right: 10px;
     height: 15px;
@@ -151,9 +151,9 @@
 .form-header-search button {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 1rem;
     bottom: 0;
-    width: 6rem;
+
     background: none;
     border: 0;
     cursor: pointer;
@@ -196,8 +196,7 @@
     background: #fcfbf9
 }
 
-.ajax-search-item:last-child {
-}
+.ajax-search-item:last-child {}
 
 .ajax-search-image {
     width: 40px;
@@ -254,11 +253,12 @@
 }
 
 .header-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     bottom: 100%;
     right: 0;
-    width: 22rem;
-    text-align: right
 }
 
 .header-phone {
