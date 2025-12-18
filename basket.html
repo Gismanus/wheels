@@ -1,4 +1,4 @@
-<main id="checkout-cart" class="content">
+<main id="checkout-cart">
     <div class="content-box">
         <ul class="breadcrumb">
             <li><a href="/"><i class="fa fa-home"></i></a></li>
@@ -152,28 +152,27 @@
         </div>
 
         <div class="box-border-form">
-            <form method="post" class="basket-form">
+            <form method="post" class="basket-form" action="order.php">
                 <div class="form-page">
                     <h2>Оформление заказа</h2>
                     <label>ФИО:</label>
                     <div class="form-element">
-                        <input tabindex="1" type="text " id="lastname" class="tx" name="lastname" placeholder="ФИО"
-                            required="">
+                        <input tabindex="1" type="text" id="lastname" class="tx" name="lastname" placeholder="ФИО">
                     </div>
                     <!-- <label>E-mail:</label> -->
-                    <div class="form-element" style="display: none;">
-                        <input tabindex="2" type="text" id="email" class="tx" name="email" value="" placeholder="email"
-                            required="">
+                    <div class="form-element">
+                        <input tabindex="2" type="text" id="email" class="tx" name="email" value=""
+                            placeholder="email (необязательно)">
                     </div>
                     <label>Телефон:</label>
                     <div class="form-element">
                         <input tabindex="3" type="text" class="tx tx-phone" id="telephone" name="telephone"
-                            placeholder="+7 (999) 999-99-99" required="">
+                            placeholder="+7 (999) 999-99-99">
                     </div>
                     <label>Адрес:</label>
                     <div class="form-element">
                         <input tabindex="4" type="text" class="tx" name="address_1" id="address"
-                            placeholder="Москва, ул. Думская" required="">
+                            placeholder="Москва, ул. Думская">
                     </div>
                     <label>Комментарий к заказу:</label>
                     <div class="form-element">
@@ -184,7 +183,7 @@
                     <div class="check-one">
                         <div class="check">
                             <label>
-                                <input type="checkbox" checked="">
+                                <input type="checkbox" checked="" value="1" name="agree">
                                 <i></i>
                                 Согласен с <a href="/">политикой использования</a> и обработкой
                                 персональных данных
@@ -194,8 +193,8 @@
                     <div class="form-button">
                         <div class="buttons clearfix">
                             <a href="/" class="btn btn-small mb-3">Продолжить покупки</a>
-                            <a class="btn btn-small mb-3" id="button_cart" type="submit">Оформить
-                                заказ</a>
+                            <button class="btn btn-small mb-3" id="button_cart" type="submit">Оформить
+                                заказ</button>
                         </div>
                     </div>
                 </div>
@@ -204,7 +203,7 @@
 
     </div>
 
-    <script>
+    <!-- <script>
         $(function () {
             $('.error').hide();
             $("#button_cart").click(function () {
@@ -276,33 +275,23 @@
                 });
             });
 
-        });
-        document.getElementById('button_cart').addEventListener('click', async function (e) {
-            e.preventDefault();
+        });         
+    </script> -->
+    <script>
+        $(document).ready(function () {
+            // Перехватываем отправку формы
+            $('.basket-form').submit(function (e) {
+                e.preventDefault();
 
-            const form = document.querySelector('.basket-form');
-            const formData = {
-                lastname: form.lastname.value,
-                telephone: form.telephone.value,
-                address_1: form.address_1.value,
-                comment: form.comment.value,
-                email: form.email.value
-            };
-
-            try {
-                const response = await fetch('/api/order.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
+                // Отправляем AJAX запрос
+                $.post('/order.php', $(this).serialize(), function (response) {
+                    if (response.trim() == 'OK') {
+                        $('.content').load('success.html');
+                    }
                 });
-
-                const result = await response.json();
-                alert(result.success ? '✅ Заказ оформлен!' : '❌ Ошибка: ' + result.error);
-
-                if (result.success) form.reset();
-            } catch (error) {
-                alert('❌ Ошибка отправки заказа');
-            }
+            });
+            $('.content').load(window.location.origin + 'success.html');
         });
+
     </script>
 </main>
