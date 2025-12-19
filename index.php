@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Магазин инвалидных колясок в Москве | Специализированные реабилитационные товары для инвалидов</title>
 
-    
+
     <link href="styles/icons.css" type="text/css" rel="stylesheet">
     <link href="styles/bootstrap.css" type="text/css" rel="stylesheet">
     <link rel="shortcut icon" href="/images/favicon.svg">

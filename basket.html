@@ -193,8 +193,8 @@
                     <div class="form-button">
                         <div class="buttons clearfix">
                             <a href="/" class="btn btn-small mb-3">Продолжить покупки</a>
-                            <button class="btn btn-small mb-3" id="button_cart" type="submit">Оформить
-                                заказ</button>
+                            <input class="btn btn-small mb-3" id="button_cart" type="submit"
+                                value="Оформить заказ"></input>
                         </div>
                     </div>
                 </div>
@@ -202,6 +202,8 @@
         </div>
 
     </div>
+
+    
 
     <!-- <script>
         $(function () {
@@ -277,21 +279,5 @@
 
         });         
     </script> -->
-    <script>
-        $(document).ready(function () {
-            // Перехватываем отправку формы
-            $('.basket-form').submit(function (e) {
-                e.preventDefault();
 
-                // Отправляем AJAX запрос
-                $.post('/order.php', $(this).serialize(), function (response) {
-                    if (response.trim() == 'OK') {
-                        $('.content').load('success.html');
-                    }
-                });
-            });
-            $('.content').load(window.location.origin + 'success.html');
-        });
-
-    </script>
 </main>

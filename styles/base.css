@@ -101,8 +101,9 @@ img[data-lazy] {
     opacity: 0
 }
 
-input,textarea,select,button {
+input,textarea,select,button,a{
     vertical-align: middle;
+    border: none;
     /* font: ; */
 }
 
