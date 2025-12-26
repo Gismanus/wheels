@@ -23,3 +23,28 @@
     background: url(../images/icons/icon-tg.svg) no-repeat;
     background-size: 100% 100%;
 }
+
+.icon-check{
+    background: url(../images/icons/checkbox.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-heart{
+    background: url(../images/icons/icon-heart.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+
+.icon-close{
+    background: url(../images/icons/icon-close.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+button.slick-prev{
+    background: url(../images/icons/slick-prev.svg) no-repeat ;
+    background-size: 100% 100%;
+}
+button.slick-next{
+    background: url(../images/icons/slick-next.svg) no-repeat ;
+    background-size: 100% 100%;
+}

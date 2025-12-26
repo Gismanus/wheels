@@ -107,7 +107,7 @@
 }
 
 .slick-loading .slick-slide {
-    visibility: hidden
+    /* visibility: hidden */
 }
 
 .slick-vertical .slick-slide {
@@ -139,12 +139,7 @@
     z-index: 10
 }
 
-.slick-arrow::before {
-    display: block;
-    /* font-family: ; */
-    content: '\e900';
-    font-size: 1rem
-}
+
 
 .slick-arrow:hover {
     background: #19b9e6
@@ -156,10 +151,10 @@
 
 .slick-prev {
     left: 0;
-    -webkit-transform: scaleX(-1);
+    /* -webkit-transform: scaleX(-1);
     -ms-transform: scaleX(-1);
     -o-transform: scaleX(-1);
-    transform: scaleX(-1)
+    transform: scaleX(-1) */
 }
 
 .slick-dots {

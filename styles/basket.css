@@ -166,7 +166,7 @@
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 50%;
-    background: #f79d00;
+    background: #686161;
     color: #fff;
     display: -webkit-box;
     display: -webkit-flex;
@@ -187,7 +187,7 @@
 }
 
 .basket-item .delete:hover {
-    background: #187abc
+    background: #649bc0
 }
 
 .much {

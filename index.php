@@ -26,12 +26,19 @@
     <link href="styles/form.css" type="text/css" rel="stylesheet">
     <link href="styles/form-success.css" type="text/css" rel="stylesheet">
     <link href="styles/catalog.css" type="text/css" rel="stylesheet">
+    <link href="styles/cat-tabs.css" type="text/css" rel="stylesheet">
+    <link href="styles/good.css" type="text/css" rel="stylesheet">
     <!-- <link href="styles/jq.css" type="text/css" rel="stylesheet"> -->
 
     <base href="#">
 
     <!-- <script src="/js/header.min.js"></script> -->
     <script src="/js/jQuery.js"></script>
+    <style>
+        .new-class {
+            background: #000;
+        }
+    </style>
 
     <!-- <script src="buyoneclick.js" type="text/javascript"></script> -->
 
@@ -81,7 +88,7 @@
                         <div id="search" class="form-header-search">
                             <input type="hidden" name="description" value="true">
                             <input type="text" name="search" value=""
-                                placeholder="Активное инвалидное кресло-коляска Ortonica S 3000 Special Edition"
+                                placeholder="Салют, друг!"
                                 class="form-control input-lg js-search-text">
                             <button type="button"><i class="icon-search"></i></button>
                         </div>
@@ -106,11 +113,8 @@
                                     <div class="menu-drop-box">
                                         <div class="menu-drop-left">
                                             <ul class="menu-catalog">
-
-                                                <li><a href="/" class="active">Технические средства реабилитации для
-                                                        детей</a>
-                                                </li>
-                                                <li><a href="/">Технические средства реабилитации для взрослых</a></li>
+                                                
+                                                <li><a href="/" class="active">Технические средства реабилитации для взрослых</a></li>
                                                 <li><a href="/">Подъёмники для инвалидов</a>
                                                 </li>
                                                 <li>
@@ -294,7 +298,7 @@
 
                             </li>
                             <li><a href="/">Производители</a></li>
-                            <li><a href="/">Оптовикам</a></li>
+                            <li><a href="/good-item">Образец товара</a></li>
                             <li><a href="/">Контакты</a></li>
                             <li><a href="/basket.html">Корзина</a></li>
                         </ul>

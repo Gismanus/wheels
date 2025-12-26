@@ -1,0 +1,73 @@
+.cat-tabs {
+    font-size: 1.3rem
+}
+
+.cat-tabs-head {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%
+}
+
+.cat-tabs-head .cat-tabs-tab {
+    padding: 1.5rem 2rem;
+    border: 1px solid #187ABC;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #187ABC;
+    font-weight: 700;
+    cursor: pointer;
+    width: 45%;
+    margin: 0 2% 2rem
+}
+
+.cat-tabs-head .active {
+    color: #fff;
+    background-color: #187ABC
+}
+
+.cat-tabs-body .cat-tabs-tab {
+    display: none
+}
+
+.cat-tabs-body .cat-tabs-tab.active {
+    display: block
+}
+
+.cat-tabs-body img {
+    max-width: 100px;
+    margin: auto
+}
+
+.cat-tabs-body a {
+    text-decoration: none;
+    color: #222
+}
+
+@media (min-width: 768px) {
+    .cat-tabs-head {
+        flex-wrap:nowrap
+    }
+
+    .cat-tabs-head .cat-tabs-tab {
+        border-width: 1px 0 1px 1px;
+        border-radius: 0;
+        width: auto;
+        margin: 0;
+        flex: 1
+    }
+
+    .cat-tabs-head .cat-tabs-tab:first-child {
+        border-radius: 5px 0 0 5px
+    }
+
+    .cat-tabs-head .cat-tabs-tab:last-child {
+        border-radius: 0 5px 5px 0;
+        border-width: 1px
+    }
+
+    .cat-tabs-body .col-md-2 {
+        -ms-flex: 0 0 14.28%;
+        flex: 0 0 14.28%;
+        max-width: 14.28%
+    }
+}

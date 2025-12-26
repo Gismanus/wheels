@@ -148,10 +148,10 @@
     position: relative;
     padding: 0 1.5rem 0 0
 }
-
+/* 
 .menu-catalog li a::before {
     display: block;
-    /* font-family: ; */
+    font-family: ;
     content: '\e900';
     position: absolute;
     top: 0.3rem;
@@ -161,7 +161,7 @@
     -o-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;
     opacity: 0
-}
+} */
 
 .menu-catalog li a:hover,.menu-catalog li a.active {
     color: #187abc
@@ -192,9 +192,9 @@
     color: #232323
 }
 
-.menu-catalog-sub li a::before {
+/* .menu-catalog-sub li a::before {
     display: block;
-    /* font-family: ; */
+    font-family: ;
     content: '\e900';
     position: absolute;
     top: 0.5rem;
@@ -204,7 +204,7 @@
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease
-}
+} */
 
 .menu-catalog-sub li a:hover {
     color: #187abc
