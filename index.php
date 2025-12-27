@@ -28,6 +28,7 @@
     <link href="styles/catalog.css" type="text/css" rel="stylesheet">
     <link href="styles/cat-tabs.css" type="text/css" rel="stylesheet">
     <link href="styles/good.css" type="text/css" rel="stylesheet">
+    <link href="styles/comments.css" type="text/css" rel="stylesheet">
     <!-- <link href="styles/jq.css" type="text/css" rel="stylesheet"> -->
 
     <base href="#">

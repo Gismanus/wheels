@@ -216,11 +216,7 @@ ol li::before {
     content: counters(section,".") " "
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%
-}
+
 
 .pagination {
     display: flex;
