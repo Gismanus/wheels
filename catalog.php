@@ -1,132 +1,64 @@
 <?php
-$products = [
-    // KR-921 (PNG изображения)
-    [
-        'id' => 1,
-        'name' => 'Респираторное оборудование',
-        'image' => '/goods/kr-921/photos/1.png',
-        'category' => 'Реабилитация',
-        'link' => '/catalog',
-        'type' => 'large'
-    ],
-    [
-        'id' => 2,
-        'name' => 'Медицинские кровати',
-        'image' => '/goods/kr-921/photos/2.png',
-        'category' => 'Кровати',
-        'link' => '/catalog',
-        'type' => 'large'
-    ],
-    [
-        'id' => 3,
-        'name' => 'Компрессионный трикотаж',
-        'image' => '/goods/kr-921/photos/3.png',
-        'category' => 'Трикотаж',
-        'link' => '/catalog',
-        'type' => 'compact'
-    ],
-    [
-        'id' => 4,
-        'name' => 'Средства гигиены',
-        'image' => '/goods/kr-921/photos/4.png',
-        'category' => 'Гигиена',
-        'link' => '/catalog',
-        'type' => 'compact'
-    ],
-    [
-        'id' => 5,
-        'name' => 'Костыли и трости',
-        'image' => '/goods/kr-921/photos/5.png',
-        'category' => 'Опора',
-        'link' => '/catalog',
-        'type' => 'compact'
-    ],
+// Функция для получения продуктов с логикой разделения
+function getDisplayProducts()
+{
+    // Читаем продукты из JSON
+    $json = file_get_contents('products.json');
+    $products = json_decode($json, true);
 
-    // KR-929 (JPG изображения)
-    [
-        'id' => 6,
-        'name' => 'Технические средства реабилитации',
-        'image' => '/goods/kr-929/photos/1.jpg',
-        'category' => 'Реабилитация',
-        'link' => '/catalog',
-        'type' => 'large'
-    ],
-    [
-        'id' => 7,
-        'name' => 'Ортопедические изделия',
-        'image' => '/goods/kr-929/photos/2.jpg',
-        'category' => 'Ортопедия',
-        'link' => '/catalog',
-        'type' => 'compact'
-    ],
-    [
-        'id' => 8,
-        'name' => 'Инвалидные коляски',
-        'image' => '/goods/kr-929/photos/3.jpg',
-        'category' => 'Коляски',
-        'link' => '/catalog',
-        'type' => 'large'
-    ],
-    [
-        'id' => 9,
-        'name' => 'Протезы и бандажи',
-        'image' => '/goods/kr-929/photos/4.jpg',
-        'category' => 'Протезирование',
-        'link' => '/catalog',
-        'type' => 'compact'
-    ],
-    [
-        'id' => 10,
-        'name' => 'Подъёмники для инвалидов',
-        'image' => '/goods/kr-929/photos/5.jpg',
-        'category' => 'Подъёмное оборудование',
-        'link' => '/catalog',
-        'type' => 'compact'
-    ]
-];
+    // Перемешиваем
+    shuffle($products);
 
+    // Разделяем по типам
+    $largeProducts = [];
+    $compactProducts = [];
 
-// Перемешиваем
-shuffle($products);
-
-// Разделяем по типам
-$largeProducts = [];
-$compactProducts = [];
-foreach ($products as $product) {
-    if ($product['type'] == 'large' && count($largeProducts) < 2) {
-        $largeProducts[] = $product;
-    } elseif ($product['type'] == 'compact' && count($compactProducts) < 2) {
-        $compactProducts[] = $product;
-    }
-
-    // Когда набрали достаточно товаров
-    if (count($largeProducts) >= 2 && count($compactProducts) >= 2) {
-        break;
-    }
-}
-
-// Если не хватило товаров нужного типа, добираем любыми
-if (count($largeProducts) < 2) {
-    $needed = 2 - count($largeProducts);
     foreach ($products as $product) {
-        if (!in_array($product, $largeProducts, true)) {
+        if ($product['type'] == 'large' && count($largeProducts) < 2) {
             $largeProducts[] = $product;
-            $needed--;
-            if ($needed == 0) break;
+        } elseif ($product['type'] == 'compact' && count($compactProducts) < 2) {
+            $compactProducts[] = $product;
+        }
+
+        // Когда набрали достаточно товаров
+        if (count($largeProducts) >= 2 && count($compactProducts) >= 2) {
+            break;
         }
     }
+
+    // Если не хватило товаров нужного типа, добираем любыми
+    if (count($largeProducts) < 2) {
+        $needed = 2 - count($largeProducts);
+        foreach ($products as $product) {
+            if (!in_array($product, $largeProducts, true)) {
+                $largeProducts[] = $product;
+                $needed--;
+                if ($needed == 0) break;
+            }
+        }
+    }
+
+    if (count($compactProducts) < 2) {
+        $needed = 2 - count($compactProducts);
+        foreach ($products as $product) {
+            if (!in_array($product, $compactProducts, true)) {
+                $compactProducts[] = $product;
+                $needed--;
+                if ($needed == 0) break;
+            }
+        }
+    }
+
+    return [
+        'large' => $largeProducts,
+        'compact' => $compactProducts
+    ];
 }
 
-if (count($compactProducts) < 2) {
-    $needed = 2 - count($compactProducts);
-    foreach ($products as $product) {
-        if (!in_array($product, $compactProducts, true)) {
-            $compactProducts[] = $product;
-            $needed--;
-            if ($needed == 0) break;
-        }
-    }
-}
+// Получаем продукты для отображения
+$displayProducts = getDisplayProducts();
+$largeProducts = $displayProducts['large'];
+$compactProducts = $displayProducts['compact'];
 ?>
 
 <main class="content-box">

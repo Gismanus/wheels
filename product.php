@@ -140,7 +140,7 @@
 
                                                     <button type="button" id="button-cart"
                                                         data-loading-text="Загрузка..." class="btn btn-block btn-small">
-                                                        в корзину <i class="icon-basket"></i>
+                                                        в корзину <i class="icon-basket_white"></i>
                                                     </button>
 
                                                 </div>

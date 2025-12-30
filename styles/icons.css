@@ -8,6 +8,9 @@
 .icon-basket {
     background: url(../images/icons/icon-basket.svg);
 }
+.icon-basket_white {
+    background: url(../images/icons/icon-basket_white.svg);
+}
 
 .icon-search{
     background: url(../images/icons/icon-search.svg) no-repeat;

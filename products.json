@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Шоколадные трюфели ручной работы",
+        "image": "\/goods\/kr-929\/photos\/2.jpg",
+        "category": "Шоколад",
+        "link": "\/catalog",
+        "type": "large"
+    },
+    {
+        "id": 2,
+        "name": "Мармеладные мишки ассорти",
+        "image": "\/goods\/kr-929\/photos\/2.jpg",
+        "category": "Мармелад",
+        "link": "\/catalog",
+        "type": "compact"
+    },
+    {
+        "id": 3,
+        "name": "Карамельные леденцы на палочке",
+        "image": "\/goods\/kr-929\/photos\/2.jpg",
+        "category": "Карамель",
+        "link": "\/catalog",
+        "type": "compact"
+    },
+    {
+        "id": 4,
+        "name": "Пряничные домики с глазурью",
+        "image": "\/goods\/kr-929\/photos\/2.jpg",
+        "category": "Пряники",
+        "link": "\/catalog",
+        "type": "large"
+    },
+    {
+        "id": 5,
+        "name": "Зефир ванильный в шоколаде",
+        "image": "\/goods\/kr-929\/photos\/2.jpg",
+        "category": "Зефир",
+        "link": "\/catalog",
+        "type": "compact"
+    }
+]
