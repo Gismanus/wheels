@@ -7,7 +7,7 @@
     <div>
         <div>
 
-            <div id="main" data-require-script="/js/product-script.js">
+            <div id="main" data-require-script="/js/product.js">
 
 
                 <main class="content" itemscope="">

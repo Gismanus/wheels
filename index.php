@@ -517,6 +517,7 @@
     </div>
     <script src="js/initMobile.js" type="text/javascript" async=""></script>
     <script src="js/menu.js" type="text/javascript" async=""></script>
+    <script src="js/product.js" type="text/javascript" async=""></script>
     
 </body>
 
