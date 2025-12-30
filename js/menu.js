@@ -23,3 +23,15 @@ $(document).ready(function() {
         });
     });
 });
+$('.header-basket').on('click', function(e) {
+    console.log('lol');
+    e.preventDefault();
+
+    $('.content').load('basket.php', function(response, status) {
+            // 7. Если ошибка - просто логируем, ничего не делаем
+            if (status === "error") {
+                console.log('Файл ' + page + '.php не существует');
+                // НЕ перезагружаем страницу!
+            }
+        });
+})

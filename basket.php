@@ -64,17 +64,7 @@
                         <button type="button" data-toggle="tooltip" title="Удалить" class="delete"
                             onclick="cart.remove('10457');location.reload();"><i class="icon-close"></i></button>
                     </div>
-                    <script>
-                        var ec_product_10457 = {
-                            "id": "10457",
-                            "name": "Детская кресло-коляска с электроприводом Otto Bock Skippy",
-                            "price": 594,
-                            "quantity": 1,
-                            "position": ec_products.length + 1,
-                            "variant": "Ширина сидения: 38 смКомплектация: 3, "
-                        };
-                        ec_products.push(ec_product_10457);
-                    </script>
+                    
                 </div>
                 <div class="basket-item">
                     <div class="col-image">

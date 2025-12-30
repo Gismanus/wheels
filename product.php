@@ -13,7 +13,7 @@
                 <main class="content" itemscope="">
                     <div class="content-box mb-5">
                         <ul class="breadcrumb">
-                            <li><a href="/"><i class="fa fa-home"></i></a></li>
+                            <li><a href="/index"><i class="fa fa-home"></i></a></li>
                             <li><a href="/">Каталог</a></li>
                             <li><a href="/">ТСР для взрослых</a></li>
                             <li><a href="/">Трость Армед KR929 с УПС</a></li>
