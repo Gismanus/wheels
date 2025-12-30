@@ -11,7 +11,7 @@
     <div class="row row-10">
         <div class="col-12 col-md-6 col-lg-4 mb-3">
             <div class="light-box list-category-main-item">
-                <a href="/"><img loading="lazy" src="./images/weelchair.jpg" class="mb-4" alt=""></a>
+                <a href="/"><img loading="lazy" src="/goods/kr-929/photos/1.jpg" class="mb-4" alt=""></a>
                 <div class="list-category-main-item-title mb-4">Технические средства реабилитации для детей
                 </div>
                 <a href="/" class="btn btn-small">Перейти в
@@ -20,7 +20,7 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-3">
             <div class="light-box list-category-main-item">
-                <a href="/"><img loading="lazy" src="images/weelchair2.jpg" class="mb-4" alt=""></a>
+                <a href="/"><img loading="lazy" src="/goods/kr-929/photos/1.jpg" class="mb-4" alt=""></a>
                 <div class="list-category-main-item-title mb-4">Технические средства реабилитации для
                     взрослых</div>
                 <a href="/" class="btn btn-small">Перейти в каталог</a>
@@ -32,7 +32,7 @@
                     <div class="light-box list-category-main-item">
                         <div class="row row-10 align-items-center">
                             <div class="col-12 col-md-5">
-                                <a href="/"><img loading="lazy" src="images/weelchair2.jpg" class="mb-4" alt=""></a>
+                                <a href="/"><img loading="lazy" src="/goods/kr-929/photos/1.jpg" class="mb-4" alt=""></a>
                             </div>
                             <div class="col-12 col-md-7">
                                 <div class="list-category-main-item-title mb-4">Респираторное оборудование
@@ -47,7 +47,7 @@
                     <div class="light-box list-category-main-item">
                         <div class="row row-10 align-items-center">
                             <div class="col-12 col-md-5">
-                                <a href="/"><img loading="lazy" src="images/weelchair2.jpg" class="mb-4" alt=""></a>
+                                <a href="/"><img loading="lazy" src="/goods/kr-929/photos/1.jpg" class="mb-4" alt=""></a>
                             </div>
                             <div class="col-12 col-md-7">
                                 <div class="list-category-main-item-title mb-4">Подъёмники для инвалидов

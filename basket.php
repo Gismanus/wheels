@@ -18,7 +18,7 @@
                 </div>
                 <div class="basket-item">
                     <div class="col-image">
-                        <a href="/"><img src="./images/bbbdec5b1abeb9923ddb186685f5dd47.jpg" alt="" title=""
+                        <a href="/"><img src="/goods/kr-929/photos/2.jpg" alt="" title=""
                                 class="img-thumbnail"></a>
                     </div>
                     <div class="col-name">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="basket-item">
                     <div class="col-image">
-                        <a href="/"><img src="./images/bbbdec5b1abeb9923ddb186685f5dd47.jpg" alt="с увлажнителем"
+                        <a href="/"><img src="/goods/kr-929/photos/3.jpg" alt="с увлажнителем"
                                 title="" class="img-thumbnail"></a>
                     </div>
                     <div class="col-name">
@@ -112,23 +112,13 @@
                         <button type="button" data-toggle="tooltip" title="Удалить" class="delete"
                             onclick="cart.remove('10456');location.reload();"><i class="icon-close"></i></button>
                     </div>
-                    <script>
-                        var ec_product_10456 = {
-                            "id": "10456",
-                            "name": "BPAP аппарат BMC Medical BMC ReSmart BPAP Y30T G2 с увлажнителем",
-                            "price": 125000,
-                            "quantity": 1,
-                            "position": ec_products.length + 1,
-                            "variant": ", "
-                        };
-                        ec_products.push(ec_product_10456);
-                    </script>
+                    
                 </div>
 
 
             </div> <!-- /basket -->
             <div class="row">
-                
+
                 <div class="col-sm-12">
                     <div class="basket-total">
                         <div id="cart-total">
@@ -144,15 +134,15 @@
             </div>
         </div>
 
-        <!-- <div class="box-border-form">
-            <form method="post" class="basket-form" action="order.php">
+        <!-- <div class="box-border-form"> -->
+        <!-- <form method="post" class="basket-form" action="order.php">
                 <div class="form-page">
                     <h2>Оформление заказа</h2>
                     <label>ФИО:</label>
                     <div class="form-element">
                         <input tabindex="1" type="text" id="lastname" class="tx" name="lastname" placeholder="ФИО">
                     </div>
-                    <!-- <label>E-mail:</label> -->
+                    <label>E-mail:</label>
         <div class="form-element">
             <input tabindex="2" type="text" id="email" class="tx" name="email" value=""
                 placeholder="email (необязательно)">
@@ -189,8 +179,8 @@
             </div>
         </div>
     </div>
-    </form>
-    </div> -->
+    </form> -->
+    </div>
 
     </div>
 

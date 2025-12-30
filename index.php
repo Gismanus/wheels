@@ -57,7 +57,7 @@
             <div class="header-top">
                 <div class="logo">
                     <a href="/">
-                        <img src="images/logo.svg" alt="">
+                        <img src="/goods/kr-929/photos/1.jpg" alt="">
                     </a>
                 </div>
                 <ul class="header-data">
@@ -66,7 +66,7 @@
                         <!-- <div class="open-location"><i class="icon-location"></i></div> -->
                     </li>
                     <li>
-                        <a href="/basket.html" class="header-basket">
+                        <a href="/basket" class="header-basket">
                             <i class="icon-basket"></i>
                             <span class="d-none d-lg-inline d-sm-none">Корзина:&nbsp;</span>
                             <div class="d-inline js-header-basket-inner">
@@ -105,7 +105,7 @@
                         <ul class="menu">
 
                             <li>
-                                <a href="/catalog.html" class="HasDrop">Каталог</a>
+                                <a href="/catalog" class="HasDrop" data-page="catalog">Каталог</a>
                                 <div class="menu-drop">
                                     <div class="back-catalog close-catalog-first">
                                         <i class="icon-arrow"></i>
@@ -298,10 +298,10 @@
                                 </div>
 
                             </li>
-                            <li><a href="/">Производители</a></li>
-                            <li><a href="/good-item">Образец товара</a></li>
-                            <li><a href="/">Контакты</a></li>
-                            <li><a href="/basket.html">Корзина</a></li>
+                            <li><a href="/" data-page="product">Производители</a></li>
+                            <li><a href="/product" data-page="product">Образец товара</a></li>
+                            <li><a href="/" data-page="contacts">Контакты</a></li>
+                            <li><a href="/basket" data-page="basket">Корзина</a></li>
                         </ul>
                     </nav>
                     <div class="header-contact">
@@ -322,10 +322,8 @@
     <!--END HEADER-->
 
     <div id="main">
-        <main class="content" id="common-home">
-            <section class="section">
-
-            </section>
+        <main class="content" id="common-home" data-default-page="catalog">
+            
         </main>
         <!--FOOTER-->
         <footer id="footer" class="footer">
@@ -336,7 +334,7 @@
                             <div class="mb-4">
                                 <a href="/">
 
-                                    <img src="images/logo.svg" class="footer-logo" alt="" data-original-src="">
+                                    <img src="/goods/kr-929/photos/1.jpg" class="footer-logo" alt="" data-original-src="">
                                 </a>
                             </div>
                             <div class="mb-4">
@@ -518,7 +516,8 @@
         </div>
     </div>
     <script src="js/initMobile.js" type="text/javascript" async=""></script>
-    <script src="js/ajaxHandler.js" type="text/javascript" async=""></script>
+    <script src="js/menu.js" type="text/javascript" async=""></script>
+    
 </body>
 
 </html>

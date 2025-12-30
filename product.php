@@ -7,7 +7,7 @@
     <div>
         <div>
 
-            <div id="main" data-require-script="/js/good-item-script.js">
+            <div id="main" data-require-script="/js/product-script.js">
 
 
                 <main class="content" itemscope="">
@@ -36,7 +36,7 @@
                                                     <a href="/" class="img-box" data-fancybox="card" itemprop="image"
                                                         tabindex="0">
                                                         <img class="" style="opacity: 1;"
-                                                            src="/goods/kr-929/photos/1.png">
+                                                            src="/goods/kr-929/photos/1.jpg">
                                                     </a>
                                                 </div>
                                             </div>
@@ -53,28 +53,28 @@
                                                 aria-hidden="false" tabindex="0" style="width: 106px;">
                                                 <div class="img-box">
                                                     <img alt="" class="" style="opacity: 1;"
-                                                        src="/goods/kr-929/photos/2.png">
+                                                        src="/goods/kr-929/photos/2.jpg">
                                                 </div>
                                             </div>
                                             <div class="slick-slide slick-active" data-slick-index="1"
                                                 aria-hidden="false" tabindex="0" style="width: 106px;">
                                                 <div class="img-box">
                                                     <img alt="" class="" style="opacity: 1;"
-                                                        src="/goods/kr-929/photos/3.png">
+                                                        src="/goods/kr-929/photos/3.jpg">
                                                 </div>
                                             </div>
                                             <div class="slick-slide slick-active" data-slick-index="2"
                                                 aria-hidden="false" tabindex="0" style="width: 106px;">
                                                 <div class="img-box">
                                                     <img alt="" class="" style="opacity: 1;"
-                                                        src="/goods/kr-929/photos/4.png">
+                                                        src="/goods/kr-929/photos/4.jpg">
                                                 </div>
                                             </div>
                                             <div class="slick-slide slick-active" data-slick-index="3"
                                                 aria-hidden="false" tabindex="0" style="width: 106px;">
                                                 <div class="img-box">
                                                     <img alt="" class="" style="opacity: 1;"
-                                                        src="/goods/kr-929/photos/5.png">
+                                                        src="/goods/kr-929/photos/5.jpg">
                                                 </div>
                                             </div>
                                         </div>
@@ -209,17 +209,17 @@
                                 </div>
                             </div>
                             <div class="row content-box js-tabs-header">
-                                <div class="col-auto js-tab active"><a href="/desc_desc">Описание</a></div>
+                                <div class="col-auto js-tab active"><a href="/desc_desc" style="color: #0a0;" data-page="desc_desc">Описание</a></div>
                                 <div class="col-auto js-tab js-tab-desc_variants"><a
-                                        href="/desc_variants">Особенности</a></div>
-                                <div class="col-auto js-tab"><a href="/desc_chars">Характеристики</a></div>
-                                <div class="col-auto js-tab"><a href="/desc_base">Базовая комплектация</a></div>
-                                <div class="col-auto js-tab"><a href="/desc_addict">Дополнительные опции</a></div>
+                                        href="/desc_variants" data-page="desc_variants">Особенности</a></div>
+                                <div class="col-auto js-tab"><a href="/desc_chars" data-page="desc_chars">Характеристики</a></div>
+                                <div class="col-auto js-tab"><a href="/desc_base" data-page="desc_base">Базовая комплектация</a></div>
+                                <div class="col-auto js-tab"><a href="/desc_addict" data-page="desc_addict">Дополнительные опции</a></div>
                             </div>
                         </div>
                         <div class="content-box js-tabs-content card-tabs-content">
                             <div id="desc_desc" class="js-tab active">
-                                <div class="h2">Описание</div>
+                                <div class="h2" style="color: #0a0;">Описание</div>
                                 <div class="row">
                                     <div class="col-12 col-lg-9">
                                         <div itemprop="aggregateRating" itemscope=""
@@ -356,6 +356,7 @@
             </div>
         </div>
     </div>
+    <script src="/js/product.js"></script>
 </body>
 
 </html>
