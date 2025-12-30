@@ -33,7 +33,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
     min-height: 0;
     box-sizing: border-box
 }
@@ -41,7 +40,7 @@
 
 /* Контейнер картинки */
 .list-category-main-item>a:first-child {
-    flex: 1 1 0;
+    /* flex: 1 1 0; */
     /* grow, shrink, basis */
     min-height: 0;
     /* Ключевое свойство! */
@@ -52,7 +51,7 @@
 /* Сама картинка */
 .list-category-main-item>a:first-child img {
     width: 100%;
-    height: 100%;
+    
     object-fit: cover;
     /* Обрезает или вписывает */
     display: block;
@@ -61,12 +60,21 @@
 
 
 .list-category-main-item img {
-
+    height: 200px;
     width: 200px;
     margin-left: auto;
     margin-right: auto
 }
 
+.smaller_img img {
+    height: 100px;
+}
+
+.light-box.flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 .list-category-main-filter {
     border: 1px solid #F0F6FA;
