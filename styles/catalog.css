@@ -66,6 +66,16 @@
     margin-right: auto
 }
 
+
+.list-category-main-item-title {
+     white-space: nowrap;
+    height: 20px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 .smaller_img img {
     height: 100px;
 }

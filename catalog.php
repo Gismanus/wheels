@@ -93,7 +93,7 @@ $compactProducts = $displayProducts['compact'];
             <?php foreach ($compactProducts as $product): ?>
                 <div class="col-12 col-md-6 col-lg-12 ">
                     <div class="light-box list-category-main-item flex-column">
-                        <div class="row">
+                        <div class="row col-12">
                             <div class="col-12 col-md-5 smaller_img">
                                 <a href="<?= $product['link'] ?>">
                                     <img loading="lazy" src="<?= $product['image'] ?>" class="mb-4" alt="<?= $product['name'] ?>">

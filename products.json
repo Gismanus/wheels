@@ -33,10 +33,18 @@
     },
     {
         "id": 5,
-        "name": "Зефир ванильный в шоколаде",
+        "name": "Зефир ванильный в шоколаде и не в шоколаде",
         "image": "\/goods\/kr-929\/photos\/2.jpg",
         "category": "Зефир",
         "link": "\/catalog",
         "type": "compact"
+    },
+    {
+        "id": 6,
+        "name": "Компуктер",
+        "image": "goods\/kr-929\/photos\/5.jpg",
+        "category": "Техника",
+        "link": "\/catalog",
+        "type": "large"
     }
 ]
