@@ -1,95 +1,49 @@
 .footer {
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: #000;
-    line-height: 22px
+    background: #2C3E50;
+    color: #FFF;
+    padding: 40px 0;
 }
 
-.footer ul {
-    list-style: none;
-    margin-left: 0
+.footer__inner {
+    display: flex;
+    justify-content: space-between;
 }
 
-.footer a {
-    text-decoration: none;
-    color: #000
+.footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.footer-bottom a {
-    text-decoration: underline
+.footer__col a {
+    color: #A7E7FE;
 }
 
-.footer-logo {
-    max-width: 150px;
+.footer__col a:hover {
+    color: #FFF;
 }
 
-.footer-top {
-    color: #000;
-    padding: 5rem 0 2rem;
-    margin-bottom: 2rem
+.footer__logo {
+    width: 100%;
+    /* На всю ширину колонки */
+    max-width: 200px;
+    /* Ограничение, если нужно */
+    height: 70px;
+    background: url('/images/logo.svg') no-repeat left center;
+    background-size: contain;
+    margin-bottom: 15px;
 }
 
-.footer-top address {
-    font-style: normal
+.footer__badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.footer ul {
-    list-style: none
+.footer__badge {
+    width: 60px;
+    height: 40px;
+
+
+    border-radius: 4px;
 }
-
-.footer img {
-        margin: 0px 15px;
-}
-
-
-.footer-phone {
-    font-size: 2.4rem;
-    font-weight: 400;
-    margin-bottom: .75rem
-}
-
-.footer-title,
-a.footer-title {
-    font-weight: 600;
-    color: #187ABC;
-    text-transform: uppercase;
-    line-height: 26px
-}
-
-.footer-box {
-    width: 96%;
-    max-width: 120rem;
-    margin: 0 auto
-}
-
-.footer-social {
-    gap: 5px;
-    flex-wrap: wrap
-}
-
-.footer-social div {
-    white-space: nowrap;
-    line-height: 1
-}
-
-.footer-social a {
-    height:30px;
-    width: 30px;
-    padding: 3px;
-    background: #187abc;
-    border-radius: 5px;
-    color: #fff;
-    text-decoration: none;
-    line-height: 28px;
-    text-align: center
-}
-
-.footer-social a i {
-    display: inline-block;
-    vertical-align: middle
-}
-
-.footer-social a:hover {
-    background: #19b9e6
-}
-

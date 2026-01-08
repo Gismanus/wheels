@@ -1,0 +1,29 @@
+.hero {
+    background: #E1F5FE;
+    background: url('/images/hero.jpg') no-repeat center / 65% auto #E1F5FE;
+    height: calc(100vh - 90px); /* 90px — примерная высота хедера */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero__inner {
+    width: 100%;
+    /* На всю ширину контейнера */
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 48px;
+    color: #2C3E50;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero__tagline {
+    font-size: 24px;
+    color: #555;
+    font-weight: 400;
+    line-height: 1.4;
+}

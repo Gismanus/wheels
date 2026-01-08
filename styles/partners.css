@@ -1,0 +1,46 @@
+.partners {
+    padding: 60px 0;
+    background: #F8FCFE;
+}
+
+.partners__title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #2C3E50;
+}
+
+.partners__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.partner-badge {
+    width: 150px;
+    height: 100px;
+    background: #FFF;
+    border: 1px solid #E1F5FE;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #555;
+}
+
+.bage_steplife {
+    background: url('/images/partners/steplife.svg') no-repeat center / 100% 100%;
+}
+
+.bage_simphony {
+    background: url('/images/partners/simphony.png') no-repeat center / 100% 100%;
+}
+
+.bage_armed {
+    background: url('/images/partners/armed.svg') no-repeat center / 100% 100%;
+}
+
+.bage_medtechno {
+    background: url('/images/partners/medtechno.svg') no-repeat center / 100% 100%;
+}

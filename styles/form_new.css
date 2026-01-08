@@ -1,8 +1,0 @@
-.modal {
-    display: none;
-    position: fixed;
-    /* остальные стили модального окна */
-}
-.modal_active {
-    display: block;
-}

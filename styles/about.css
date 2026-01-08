@@ -1,0 +1,31 @@
+.about {
+    padding: 60px 0;
+}
+
+.about__title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #2C3E50;
+    text-align: center;
+}
+
+.about__text {
+    font-size: 18px;
+    line-height: 1.6;
+
+    color: #555;
+    text-align: center;
+    margin: 0 auto 40px;
+}
+
+.about__gallery {
+    display: flex;
+    gap: 20px;
+}
+
+.about__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
