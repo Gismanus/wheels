@@ -1,12 +1,16 @@
 .hero {
     background: #E1F5FE;
-    background: url('/images/hero.jpg') no-repeat center / 65% auto #E1F5FE;
-    height: calc(100vh - 90px); /* 90px — примерная высота хедера */
+    background: url('/images/hero.png') no-repeat center / auto 100% #E1F5FE;
+    height: calc(100vh - 90px);
+    width: 100%;
+    /* или любая ширина */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
+
 
 .hero__inner {
     width: 100%;
