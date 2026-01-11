@@ -237,7 +237,7 @@
                 e.preventDefault(); // Отменяем стандартную отправку
 
                 $.ajax({
-                    url: 'submit.php',
+                    url: '/submit.php',
                     type: 'POST',
                     data: $(this).serialize(), // Все данные формы
                     dataType: 'json',
