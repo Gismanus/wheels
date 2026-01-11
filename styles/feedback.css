@@ -1,0 +1,67 @@
+.feedback-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 60px;
+  background: #AED2EC; /* Жёлтый фон, как в примере */
+  border-radius: 12px;
+}
+.feedback-form__text {
+  flex: 1;
+  max-width: 400px;
+}
+.feedback-form__title {
+  font-size: 32px;
+  color: #2C3E50;
+  margin-bottom: 20px;
+}
+.feedback-form__text p {
+  color: #555;
+  line-height: 1.5;
+}
+.feedback-form__form {
+  flex: 1;
+  max-width: 400px;
+}
+.feedback-form__field {
+  margin-bottom: 20px;
+}
+.feedback-form__field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+.textfield {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #E1F5FE;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.feedback-form__btn {
+  width: 100%;
+  padding: 15px;
+  background: #2C3E50;
+  color: #FFF;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.feedback-form__btn:hover {
+  background: #1A5276;
+}
+.feedback-form__agree {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+.feedback-form__agree a {
+  color: #A7E7FE;
+  text-decoration: underline;
+}

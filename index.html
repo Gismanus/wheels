@@ -18,6 +18,7 @@
     <link href="/styles/products.css" type="text/css" rel="stylesheet">
     <link href="/styles/partners.css" type="text/css" rel="stylesheet">
     <link href="/styles/features.css" type="text/css" rel="stylesheet">
+    <link href="/styles/feedback.css" type="text/css" rel="stylesheet">
     <link href="/styles/footer.css" type="text/css" rel="stylesheet">
 
     <script src="/js/jQuery.js"></script>
@@ -42,7 +43,10 @@
                 <a class="header__phone" href="tel:+...">
                     <span class="icon icon_phone"></span>
                     +7 (915) 177-55-21
-                    <button class="callback-btn">Заказать обратный звонок</button>
+                    <button class="callback-btn"
+                        onclick="document.querySelector('.feedback-form').scrollIntoView({behavior: 'smooth', block: 'start'})">
+                        Заказать обратный звонок
+                    </button>
                 </a>
             </div>
         </div>
@@ -64,7 +68,8 @@
                     <p>Лёгкая, манёвренная, для ежедневного использования.</p>
                 </div>
                 <div class="product-card">
-                    <img src="/images/image_179.jpg" alt="" class="product-card__image" style="background: #fff; object-fit: contain;">
+                    <img src="/images/image_179.jpg" alt="" class="product-card__image"
+                        style="background: #fff; object-fit: contain;">
                     <h3>Коляска инвалидная</h3>
                     <p>C регулируемым сиденьем.</p>
                 </div>
@@ -127,9 +132,13 @@
                 <div class="feature-badge">
                     <div class="feature-badge__icon icon_dialog"></div>
                     <div class="feature-badge__content">
-                        <strong class="feature-badge__benefit ">Готовность к диалогу
-                            с клиентом</strong>
-                        <span class="feature-badge__desc">В случае возникновения проблем мы идем навстречу</span>
+                        <strong class="feature-badge__benefit ">
+                            Готовность к диалогу
+                            с клиентом
+                        </strong>
+                        <span class="feature-badge__desc">
+                            В случае возникновения проблем мы идем навстречу
+                        </span>
                     </div>
                 </div>
                 <div class="feature-badge">
@@ -150,6 +159,33 @@
             </div>
         </div>
     </section>
+    <div class="container">
+        <div class="feedback-form">
+            <div class="feedback-form__text">
+                <h2 class="feedback-form__title">Оставьте заявку и мы найдем оптимальное решение для Вас</h2>
+                <p>Работаем через партнерскую сеть по всей России</p>
+            </div>
+            <div class="feedback-form__form">
+                <form class="n-form" name="Форма заявки на странице">
+                    <div class="feedback-form__field">
+                        <label>Ваше имя</label>
+                        <input class="textfield" required type="text" name="name" autocomplete="off">
+                    </div>
+                    <div class="feedback-form__field">
+                        <label>Контактный телефон</label>
+                        <input class="textfield" required type="tel" name="phone" autocomplete="off">
+                    </div>
+                    <div class="feedback-form__actions">
+                        <button class="feedback-form__btn" type="submit">Оставить заявку</button>
+                        <p class="feedback-form__agree">
+                            Нажимая кнопку, вы даете согласие на обработку персональных данных
+                            <a href="/">«О персональных данных»</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <footer class="footer">
         <div class="container footer__inner">
             <div class="footer__col">
