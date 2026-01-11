@@ -164,7 +164,7 @@
                     <p>Работаем через партнерскую сеть по всей России</p>
                 </div>
                 <div class="feedback-form__form">
-                    <form class="n-form" name="Форма заявки на странице">
+                    <form id="feedback-form" class="n-form" method="POST">
                         <div class="feedback-form__field">
                             <label>Ваше имя</label>
                             <input class="textfield" required type="text" name="name" autocomplete="off">
@@ -228,6 +228,31 @@
             document.querySelector('.feedback-form').scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#feedback-form').on('submit', function (e) {
+                e.preventDefault(); // Отменяем стандартную отправку
+
+                $.ajax({
+                    url: 'submit.php',
+                    type: 'POST',
+                    data: $(this).serialize(), // Все данные формы
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Заявка отправлена!');
+                            $('#feedback-form')[0].reset(); // Очищаем форму
+                        } else {
+                            alert('Ошибка: ' + response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Ошибка соединения с сервером');
+                    }
+                });
             });
         });
     </script>
