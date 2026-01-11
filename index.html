@@ -43,11 +43,8 @@
                 <a class="header__phone" href="tel:+...">
                     <span class="icon icon_phone"></span>
                     +7 (915) 177-55-21
-                    <button class="callback-btn"
-                        onclick="document.querySelector('.feedback-form').scrollIntoView({behavior: 'smooth', block: 'start'})">
-                        Заказать обратный звонок
-                    </button>
                 </a>
+                <button class="callback-btn" id="callback-btn" type="button">Заказать обратный звонок</button>
             </div>
         </div>
     </header>
@@ -214,6 +211,14 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.getElementById('callback-btn').addEventListener('click', function () {
+            document.querySelector('.feedback-form').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
 </body>
 
 </html>
