@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/images/favicon.svg " type="image/x-icon">
+
+    <title>Магазин инвалидных колясок в Москве</title>
+
+    <link rel="stylesheet" href="/fonts/fonts.css">
+
+    <link href="styles/base.css" type="text/css" rel="stylesheet">
+    <link href="/fonts/fonts.css" type="text/css" rel="stylesheet">
+    <link href="/styles/hero.css" type="text/css" rel="stylesheet">
+    <link href="/styles/about.css" type="text/css" rel="stylesheet">
+    <link href="/styles/products.css" type="text/css" rel="stylesheet">
+    <link href="/styles/partners.css" type="text/css" rel="stylesheet">
+    <link href="/styles/features.css" type="text/css" rel="stylesheet">
+    <link href="/styles/feedback.css" type="text/css" rel="stylesheet">
+    <link href="/styles/about-page.css" type="text/css" rel="stylesheet">
+    <link href="/styles/footer.css" type="text/css" rel="stylesheet">
+
+    <script src="/js/jQuery.js"></script>
+
+    <style>
+        .new-class {
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header__inner">
+            <a class="logo" href="/">Лого</a>
+            <nav class="nav">
+                <a class="nav__link" href="products/">Каталог</a>
+                <a class="nav__link" href="about.html">О нас</a>
+                <a class="nav__link" href="delivery.html">Доставка</a>
+            </nav>
+            <div class="header__contacts">
+                <a class="header__phone" href="tel:+...">
+                    <span class="icon icon_phone"></span>
+                    +7 (915) 177-55-21
+                </a>
+                <button id="show-feedback" class="callback-btn">Заказать обратный звонок</button>
+            </div>
+        </div>
+    </header>
+    <main class="about-page container">
+        <h1>О нашей компании</h1>
+        <p>Мы более 10 лет предоставляем современные инвалидные коляски, помогая людям обрести мобильность и комфорт.
+        </p>
+
+        <section class="about-page__section">
+            <h2>Наша миссия</h2>
+            <p>Обеспечить каждого клиента надёжным, удобным и технологичным средством передвижения.</p>
+        </section>
+
+        <section class="about-page__section">
+            <h2>Наши ценности</h2>
+            <ul>
+                <li>Качество и безопасность</li>
+                <li>Индивидуальный подход</li>
+                <li>Профессиональная поддержка</li>
+            </ul>
+        </section>
+
+        <section class="about-page__section">
+            <h2>Контакты</h2>
+            <p>Москва, ул. Примерная, 10</p>
+            <p>Телефон: +7 (495) 123-45-67</p>
+            <p>Email: info@tsr1group.ru</p>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__col">
+                <div class="footer__logo"></div>
+                <p>Телефон: +7 (915) 177-55-21</p>
+                <p>Адрес: Муниципальный округ Коммунарка, ул. Николо-Хованская, д.20</p>
+            </div>
+            <div class="footer__col">
+                <h3>Навигация</h3>
+                <a href="products/">Каталог</a>
+                <a href="about.html">О нас</a>
+                <a href="delivery.html">Доставка</a>
+            </div>
+            <div class="footer__col">
+                <h3>Партнёрам</h3>
+                <a href="#">Сотрудничество</a>
+                <a href="#">Документы</a>
+            </div>
+            <div class="footer__col">
+
+                <div class="footer__badges">
+                    <div class="footer__badge bage_steplife"></div>
+                    <div class="footer__badge bage_simphony"></div>
+                    <div class="footer__badge bage_armed"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="feedback-popup" class="feedback-popup" style="display: none;">
+        <button class="feedback-popup__close" aria-label="Закрыть">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="feedback-form">
+            <div class="feedback-form__text">
+                <h2 class="feedback-form__title">Оставьте заявку и мы найдем оптимальное решение для Вас</h2>
+                <p>Работаем через партнерскую сеть по всей России</p>
+            </div>
+            <div class="feedback-form__form">
+                <form method="POST" id="feedback-form-about" class="n-form" name="Форма на странице О нас">
+                    <div class="feedback-form__field">
+                        <label>Ваше имя</label>
+                        <input class="textfield" required type="text" name="name" autocomplete="off">
+                    </div>
+                    <div class="feedback-form__field">
+                        <label>Тема вопроса</label>
+                        <select class="textfield" name="topic" required>
+                            <option value="" disabled selected>Выберите тему</option>
+                            <option value="delivery">Доставка</option>
+                            <option value="product">Выбор коляски</option>
+                            <option value="service">Сервис и ремонт</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    <div class="feedback-form__field">
+                        <label>Контактный телефон</label>
+                        <input class="textfield" required type="tel" name="phone" autocomplete="off">
+                    </div>
+                    <div class="feedback-form__actions">
+                        <button class="feedback-form__btn" type="submit">Оставить заявку</button>
+                        <p class="feedback-form__agree">
+                            Нажимая кнопку, вы даете согласие на обработку персональных данных
+                            <a href="/politika-konfidentsialnosti/" target="_blank">«О персональных данных»</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        document.getElementById('show-feedback').addEventListener('click', function () {
+            document.getElementById('feedback-popup').style.display = 'block';
+        });
+
+        // Закрытие по клику вне формы (опционально)
+        document.addEventListener('click', function (e) {
+            const popup = document.getElementById('feedback-popup');
+            const trigger = document.getElementById('show-feedback');
+            if (popup.style.display === 'block' && !popup.contains(e.target) && e.target !== trigger) {
+                popup.style.display = 'none';
+            }
+        });
+
+        // Отправка формы (тот же обработчик, что в index.html)
+        $('#feedback-form-about').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'submit.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        alert('Заявка отправлена!');
+                        $('#feedback-form-about')[0].reset();
+                        document.getElementById('feedback-popup').style.display = 'none';
+                    } else {
+                        alert('Ошибка: ' + response.message);
+                    }
+                },
+                error: function () {
+                    alert('Ошибка соединения с сервером');
+                }
+            });
+        });
+        // Закрытие по крестику
+        document.querySelector('.feedback-popup__close').addEventListener('click', function () {
+            document.getElementById('feedback-popup').style.display = 'none';
+        });
+    </script>
+    <script src="/js/submitForm.js">
+
+    </script>
+</body>
+
+</html>

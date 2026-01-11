@@ -19,6 +19,7 @@
     <link href="/styles/partners.css" type="text/css" rel="stylesheet">
     <link href="/styles/features.css" type="text/css" rel="stylesheet">
     <link href="/styles/feedback.css" type="text/css" rel="stylesheet">
+    <link href="/styles/about-page.css" type="text/css" rel="stylesheet">
     <link href="/styles/footer.css" type="text/css" rel="stylesheet">
 
     <script src="/js/jQuery.js"></script>
@@ -231,30 +232,8 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#feedback-form').on('submit', function (e) {
-                e.preventDefault(); // Отменяем стандартную отправку
+    <script src="/js/submitForm.js">
 
-                $.ajax({
-                    url: '/submit.php',
-                    type: 'POST',
-                    data: $(this).serialize(), // Все данные формы
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.success) {
-                            alert('Заявка отправлена!');
-                            $('#feedback-form')[0].reset(); // Очищаем форму
-                        } else {
-                            alert('Ошибка: ' + response.message);
-                        }
-                    },
-                    error: function () {
-                        alert('Ошибка соединения с сервером');
-                    }
-                });
-            });
-        });
     </script>
 </body>
 
