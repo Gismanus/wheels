@@ -22,7 +22,7 @@
 }
 .feedback-form__form {
   flex: 1;
-  max-width: 400px;
+  max-width: 500px;
 }
 .feedback-form__field {
   margin-bottom: 20px;

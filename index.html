@@ -156,33 +156,45 @@
             </div>
         </div>
     </section>
-    <div class="container">
-        <div class="feedback-form">
-            <div class="feedback-form__text">
-                <h2 class="feedback-form__title">Оставьте заявку и мы найдем оптимальное решение для Вас</h2>
-                <p>Работаем через партнерскую сеть по всей России</p>
-            </div>
-            <div class="feedback-form__form">
-                <form class="n-form" name="Форма заявки на странице">
-                    <div class="feedback-form__field">
-                        <label>Ваше имя</label>
-                        <input class="textfield" required type="text" name="name" autocomplete="off">
-                    </div>
-                    <div class="feedback-form__field">
-                        <label>Контактный телефон</label>
-                        <input class="textfield" required type="tel" name="phone" autocomplete="off">
-                    </div>
-                    <div class="feedback-form__actions">
-                        <button class="feedback-form__btn" type="submit">Оставить заявку</button>
-                        <p class="feedback-form__agree">
-                            Нажимая кнопку, вы даете согласие на обработку персональных данных
-                            <a href="/">«О персональных данных»</a>
-                        </p>
-                    </div>
-                </form>
+    <section class="feedback" id="callback-form">
+        <div class="container">
+            <div class="feedback-form">
+                <div class="feedback-form__text">
+                    <h2 class="feedback-form__title">Оставьте заявку и мы найдем оптимальное решение для Вас</h2>
+                    <p>Работаем через партнерскую сеть по всей России</p>
+                </div>
+                <div class="feedback-form__form">
+                    <form class="n-form" name="Форма заявки на странице">
+                        <div class="feedback-form__field">
+                            <label>Ваше имя</label>
+                            <input class="textfield" required type="text" name="name" autocomplete="off">
+                        </div>
+                        <div class="feedback-form__field">
+                            <label>Тема вопроса</label>
+                            <select class="textfield" name="topic" required>
+                                <option value="" disabled selected>Выберите тему</option>
+                                <option value="delivery">Доставка</option>
+                                <option value="product">Выбор коляски</option>
+                                <option value="service">Сервис и ремонт</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="feedback-form__field">
+                            <label>Контактный телефон</label>
+                            <input class="textfield" required type="tel" name="phone" autocomplete="off">
+                        </div>
+                        <div class="feedback-form__actions">
+                            <button class="feedback-form__btn" type="submit">Оставить заявку</button>
+                            <p class="feedback-form__agree">
+                                Нажимая кнопку, вы даете согласие на обработку персональных данных
+                                <a href="/politika-konfidentsialnosti/" target="_blank">«О персональных данных»</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <footer class="footer">
         <div class="container footer__inner">
             <div class="footer__col">
