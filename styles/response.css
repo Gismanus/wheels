@@ -1,0 +1,66 @@
+/* Адаптив */
+@media (max-width: 1300px) {
+    .container {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .header__inner,
+    .features__row,
+    .products__list,
+    .partners__list,
+    .footer__inner {
+        flex-wrap: wrap;
+    }
+
+    .nav {
+        gap: 15px;
+    }
+
+    .header__contacts {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .product-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .partner-badge {
+        width: 45%;
+        margin-bottom: 15px;
+    }
+
+    .feedback-form {
+        flex-direction: column;
+    }
+
+    .hero__title {
+        font-size: 36px;
+    }
+
+    .hero__tagline {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .partner-badge {
+        width: 100%;
+    }
+
+    .feedback-popup {
+        width: 95%;
+        padding: 20px;
+    }
+}
