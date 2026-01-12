@@ -1,50 +1,12 @@
 [
-    {
-        "id": 1,
-        "name": "Шоколадные трюфели ручной работы",
-        "image": "\/goods\/kr-929\/photos\/2.jpg",
-        "category": "Шоколад",
-        "link": "\/catalog",
-        "type": "large"
-    },
-    {
-        "id": 2,
-        "name": "Мармеладные мишки ассорти",
-        "image": "\/goods\/kr-929\/photos\/2.jpg",
-        "category": "Мармелад",
-        "link": "\/catalog",
-        "type": "compact"
-    },
-    {
-        "id": 3,
-        "name": "Карамельные леденцы на палочке",
-        "image": "\/goods\/kr-929\/photos\/2.jpg",
-        "category": "Карамель",
-        "link": "\/catalog",
-        "type": "compact"
-    },
-    {
-        "id": 4,
-        "name": "Пряничные домики с глазурью",
-        "image": "\/goods\/kr-929\/photos\/2.jpg",
-        "category": "Пряники",
-        "link": "\/catalog",
-        "type": "large"
-    },
-    {
-        "id": 5,
-        "name": "Зефир ванильный в шоколаде и не в шоколаде",
-        "image": "\/goods\/kr-929\/photos\/2.jpg",
-        "category": "Зефир",
-        "link": "\/catalog",
-        "type": "compact"
-    },
-    {
-        "id": 6,
-        "name": "Компуктер",
-        "image": "goods\/kr-929\/photos\/5.jpg",
-        "category": "Техника",
-        "link": "\/catalog",
-        "type": "large"
-    }
+  {
+    "id": 1,
+    "title": "Кресло-коляска активного типа",
+    "price": "85 000 ₽",
+    "image": "/images/image_179.jpg",
+    "description": "Лёгкая, манёвренная коляска для активного и не только использования в городе.",
+    "features": ["Вес: 120 кг", "Грузоподъёмность: 120 кг",  "Складная рама"],
+    "meta_title": "Купить активную коляску в Москве  и не только | Магазин",
+    "meta_description": "Продажа инвалидных и не только колясок активного типа. Доставка по РФ."
+  }
 ]
