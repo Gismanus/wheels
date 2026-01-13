@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/images/favicon.svg " type="image/x-icon">
+
+    <title>Магазин инвалидных колясок в Москве</title>
+
+    <link rel="stylesheet" href="/fonts/fonts.css">
+
+    <link href="styles/base.css" type="text/css" rel="stylesheet">
+    <link href="/fonts/fonts.css" type="text/css" rel="stylesheet">
+    <link href="/styles/hero.css" type="text/css" rel="stylesheet">
+    <link href="/styles/about.css" type="text/css" rel="stylesheet">
+    <link href="/styles/products.css" type="text/css" rel="stylesheet">
+    <link href="/styles/partners.css" type="text/css" rel="stylesheet">
+    <link href="/styles/features.css" type="text/css" rel="stylesheet">
+    <link href="/styles/feedback.css" type="text/css" rel="stylesheet">
+    <link href="/styles/about-page.css" type="text/css" rel="stylesheet">
+    <link href="/styles/product-page.css" type="text/css" rel="stylesheet">
+    <link href="/styles/catalog-page.css" type="text/css" rel="stylesheet">
+
+    <link href="/styles/footer.css" type="text/css" rel="stylesheet">
+
+    <link href="/styles/response.css" type="text/css" rel="stylesheet">
+
+    <script src="/js/jQuery.js"></script>
+
+    <style>
+        .new-class {
+            background: #000;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Header (копируем из index.html) -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="logo" href="/">Лого</a>
+            <button class="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-container">
+
+                <nav class="nav">
+                    <a class="nav__link" href="product.html">Каталог</a>
+                    <a class="nav__link" href="about.html">О нас</a>
+                    <a class="nav__link" href="delivery.html">Доставка</a>
+                </nav>
+                <div class="header__contacts">
+                    <a class="header__phone" href="tel:+...">
+                        <span class="icon icon_phone"></span>
+                        +7 (915) 177-55-21
+                    </a>
+                    <button class="callback-btn" id="callback-btn" type="button">Заказать обратный звонок</button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="catalog container">
+        <h1 class="catalog__title">Каталог</h1>
+        <div class="catalog__grid" id="catalog-grid">
+            <!-- Продукты загрузятся через JS -->
+        </div>
+    </main>
+
+    <!-- Footer (копируем из index.html) -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__col">
+                <div class="footer__logo"></div>
+                <p>Телефон: +7 (915) 177-55-21</p>
+                <p>Адрес: Муниципальный округ Коммунарка, ул. Николо-Хованская, д.20</p>
+            </div>
+            <div class="footer__col">
+                <h3>Навигация</h3>
+                <a href="products/">Каталог</a>
+                <a href="about.html">О нас</a>
+                <a href="delivery.html">Доставка</a>
+            </div>
+            <div class="footer__col">
+                <h3>Партнёрам</h3>
+                <a href="#">Сотрудничество</a>
+                <a href="#">Документы</a>
+            </div>
+            <div class="footer__col">
+
+                <div class="footer__badges">
+                    <div class="footer__badge bage_steplife"></div>
+                    <div class="footer__badge bage_simphony"></div>
+                    <div class="footer__badge bage_armed"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        fetch('products.json')
+            .then(res => res.json())
+            .then(products => {
+                const grid = document.getElementById('catalog-grid');
+                grid.innerHTML = products.map(product => `
+                    <div class="catalog-card">
+                        <img src="${product.image}" alt="${product.title}" class="catalog-card__image">
+                        <h3 class="catalog-card__title">${product.title}</h3>
+                        <p class="catalog-card__price">${product.price}</p>
+                        <a href="product.html?id=${product.id}" class="catalog-card__link">Подробнее</a>
+                    </div>
+                `).join('');
+            });
+    </script>
+</body>
+
+</html>

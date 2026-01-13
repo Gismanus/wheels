@@ -47,12 +47,12 @@
             <div class="nav-container">
 
                 <nav class="nav">
-                    <a class="nav__link" href="product.html">Каталог</a>
+                    <a class="nav__link" href="catalog.html">Каталог</a>
                     <a class="nav__link" href="about.html">О нас</a>
                     <a class="nav__link" href="delivery.html">Доставка</a>
                 </nav>
                 <div class="header__contacts">
-                    <a class="header__phone" href="tel:+...">
+                    <a class="header__phone" href="tel:+79151775521">
                         <span class="icon icon_phone"></span>
                         +7 (915) 177-55-21
                     </a>

@@ -206,3 +206,16 @@ button {
 .callback-btn:hover {
     background: #8FD8F0;
 }
+
+@media (min-width: 769px) {
+  .header__phone[href^="tel:"] {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__phone[href^="tel:"] {
+    pointer-events: auto;
+  }
+}

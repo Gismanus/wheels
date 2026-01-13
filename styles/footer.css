@@ -19,6 +19,9 @@
 }
 
 @media (max-width: 768px) {
+    .footer {
+        padding: 0;
+    }
     .footer__col {
 
         padding: 20px 20px;
