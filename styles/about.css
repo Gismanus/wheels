@@ -20,11 +20,12 @@
 
 .about__gallery {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
 .about__image {
-    width: 100%;
+    width: 30%;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;

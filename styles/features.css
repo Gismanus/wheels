@@ -51,21 +51,33 @@
     color: #555;
 }
 
-.icon_delivery{
+.icon_delivery {
     background: url('/images/icons/icon_delivery.svg') no-repeat center / 100% 100%;
 }
-.icon_regions{
+
+.icon_regions {
     background: url('/images/icons/icon_regions.svg') no-repeat center / 100% 100%;
 }
-.icon_cars{
+
+.icon_cars {
     background: url('/images/icons/icon_cars.svg') no-repeat center / 100% 100%;
 }
-.icon_dialog{
+
+.icon_dialog {
     background: url('/images/icons/icon_dialog.svg') no-repeat center / 100% 100%;
 }
-.icon_service{
+
+.icon_service {
     background: url('/images/icons/icon_service.svg') no-repeat center / 100% 100%;
 }
-.icon_pro{
+
+.icon_pro {
     background: url('/images/icons/icon_pro.svg') no-repeat center / 100% 100%;
+}
+
+
+@media (max-width: 768px) {
+    .feature-badge {
+        overflow: hidden;
+    }
 }

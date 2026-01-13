@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Черепашья графика с анимацией</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 2px solid #333;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        button, select, input {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .examples {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 800px;
+        }
+        .info {
+            margin-top: 10px;
+            color: #666;
+            display: flex;
+            gap: 15px;
+        }
+        .example-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .example-btn:hover {
+            background-color: #45a049;
+        }
+        .params {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .param-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .param-group label {
+            font-size: 12px;
+            color: #666;
+        }
+        .animation-controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .animate-btn {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .animate-btn:hover {
+            background-color: #1976D2;
+        }
+        .stop-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .stop-btn:hover {
+            background-color: #d32f2f;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .slider-container input[type="range"] {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Анимированная черепашья графика</h1>
+    <div class="info">
+        <span>X: <span id="posX">0</span></span>
+        <span>Y: <span id="posY">0</span></span>
+        <span>Угол: <span id="angle">0</span>°</span>
+        <span>Перо: <span id="penState">опущено</span></span>
+        <span>Анимация: <span id="animState">остановлена</span></span>
+    </div>
+    <canvas id="turtleCanvas" width="800" height="600"></canvas>
+    
+    <div class="params">
+        <div class="param-group">
+            <label for="distance">Расстояние</label>
+            <input type="number" id="distance" value="50" placeholder="50" min="1">
+        </div>
+        <div class="param-group">
+            <label for="degrees">Угол поворота</label>
+            <input type="number" id="degrees" value="90" placeholder="90" min="-360" max="360">
+        </div>
+        <div class="param-group">
+            <label for="shapeSize">Размер фигуры</label>
+            <input type="number" id="shapeSize" value="100" placeholder="100" min="1">
+        </div>
+        <div class="param-group">
+            <label for="animationSpeed">Скорость анимации</label>
+            <div class="slider-container">
+                <input type="range" id="animationSpeed" min="1" max="100" value="50">
+                <span id="speedValue">50</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="animation-controls">
+        <button class="animate-btn" onclick="startAnimation()">▶ Запустить анимацию</button>
+        <button class="stop-btn" onclick="stopAnimation()">⏹ Остановить</button>
+        <button onclick="pauseAnimation()">⏸ Пауза</button>
+        <button onclick="stepAnimation()">⏭ Шаг</button>
+    </div>
+    
+    <div class="controls">
+        <button onclick="moveForward()">Вперед</button>
+        <button onclick="moveBackward()">Назад</button>
+        <button onclick="turnLeft()">Влево</button>
+        <button onclick="turnRight()">Вправо</button>
+        <select id="penColor">
+            <option value="black">Черный</option>
+            <option value="red">Красный</option>
+            <option value="blue">Синий</option>
+            <option value="green">Зеленый</option>
+            <option value="purple">Фиолетовый</option>
+            <option value="orange">Оранжевый</option>
+            <option value="brown">Коричневый</option>
+        </select>
+        <button onclick="penUp()">Поднять перо</button>
+        <button onclick="penDown()">Опустить перо</button>
+        <button onclick="clearCanvas()">Очистить</button>
+        <button onclick="resetTurtle()">Сбросить черепаху</button>
+    </div>
+    
+    <div class="examples">
+        <button class="example-btn" onclick="animateSquare()">Анимировать квадрат</button>
+        <button class="example-btn" onclick="animateTriangle()">Анимировать треугольник</button>
+        <button class="example-btn" onclick="animateSpiral()">Анимировать спираль</button>
+        <button class="example-btn" onclick="animateCircle()">Анимировать круг</button>
+        <button class="example-btn" onclick="animateFlower()">Анимировать цветок</button>
+        <button class="example-btn" onclick="animateStar()">Анимировать звезду</button>
+        <button class="example-btn" onclick="animateRandom()">Случайная анимация</button>
+    </div>
+    
+    <div class="status" id="status">Готов к работе</div>
+
+    <script>
+        // Инициализация Canvas
+        const canvas = document.getElementById('turtleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Состояние черепахи
+        let turtle = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            angle: 0,
+            penDown: true,
+            color: 'black',
+            lineWidth: 2,
+            isMoving: false
+        };
+        
+        // Состояние анимации
+        let animationState = {
+            isAnimating: false,
+            isPaused: false,
+            animationId: null,
+            commands: [],
+            currentCommandIndex: 0,
+            speed: 50,
+            stepSize: 5, // Шаг перемещения за один кадр анимации
+            rotationStep: 5 // Шаг поворота за один кадр
+        };
+        
+        // История команд для отмены
+        let commandHistory = [];
+        
+        // Функция для получения значения из поля ввода
+        function getInputValue(id, defaultValue) {
+            const input = document.getElementById(id);
+            const value = parseInt(input.value);
+            return isNaN(value) || value === '' ? defaultValue : value;
+        }
+        
+        // Обновление информации
+        function updateInfo() {
+            document.getElementById('posX').textContent = Math.round(turtle.x);
+            document.getElementById('posY').textContent = Math.round(turtle.y);
+            document.getElementById('angle').textContent = Math.round(turtle.angle % 360);
+            document.getElementById('penState').textContent = turtle.penDown ? 'опущено' : 'поднято';
+            document.getElementById('animState').textContent = animationState.isAnimating ? 
+                (animationState.isPaused ? 'на паузе' : 'активна') : 'остановлена';
+        }
+        
+        // Обновление статуса
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+        }
+        
+        // Вспомогательные функции
+        function forward(distance, animate = false) {
+            if (animate) {
+                addToAnimation('forward', distance);
+            } else {
+                const oldX = turtle.x;
+                const oldY = turtle.y;
+                
+                turtle.x += distance * Math.cos(turtle.angle * Math.PI / 180);
+                turtle.y += distance * Math.sin(turtle.angle * Math.PI / 180);
+                
+                if (turtle.penDown) {
+                    ctx.beginPath();
+                    ctx.moveTo(oldX, oldY);
+                    ctx.lineTo(turtle.x, turtle.y);
+                    ctx.strokeStyle = turtle.color;
+                    ctx.lineWidth = turtle.lineWidth;
+                    ctx.stroke();
+                }
+                
+                drawTurtle();
+                updateInfo();
+            }
+        }
+        
+        function backward(distance, animate = false) {
+            if (animate) {
+                addToAnimation('backward', distance);
+            } else {
+                forward(-distance);
+            }
+        }
+        
+        function right(degrees, animate = false) {
+            if (animate) {
+                addToAnimation('right', degrees);
+            } else {
+                turtle.angle += degrees;
+                drawTurtle();
+                updateInfo();
+            }
+        }
+        
+        function left(degrees, animate = false) {
+            if (animate) {
+                addToAnimation('left', degrees);
+            } else {
+                turtle.angle -= degrees;
+                drawTurtle();
+                updateInfo();
+            }
+        }
+        
+        function penUp() {
+            turtle.penDown = false;
+            drawTurtle();
+            updateInfo();
+        }
+        
+        function penDown() {
+            turtle.penDown = true;
+            drawTurtle();
+            updateInfo();
+        }
+        
+        // Отрисовка черепахи с анимацией
+        function drawTurtle() {
+            ctx.save();
+            ctx.translate(turtle.x, turtle.y);
+            ctx.rotate(turtle.angle * Math.PI / 180);
+            
+            // Тело черепахи с эффектом движения
+            const bodyColor = turtle.penDown ? 'green' : 'gray';
+            ctx.fillStyle = animationState.isAnimating ? 
+                `hsl(${(Date.now() / 50) % 360}, 70%, 50%)` : bodyColor;
+            
+            ctx.beginPath();
+            ctx.ellipse(0, 0, 10, 6, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Голова
+            ctx.fillStyle = turtle.penDown ? 'darkgreen' : 'darkgray';
+            ctx.beginPath();
+            ctx.ellipse(15, 0, 5, 4, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Лапки с анимацией ходьбы
+            const time = Date.now() / 200;
+            const legOffset = animationState.isAnimating ? Math.sin(time) * 2 : 0;
+            
+            ctx.fillStyle = turtle.penDown ? 'lightgreen' : 'lightgray';
+            const legs = [
+                [-5, -5 + legOffset], 
+                [-5, 5 - legOffset], 
+                [5, -5 - legOffset], 
+                [5, 5 + legOffset]
+            ];
+            
+            legs.forEach(([x, y]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // Хвост
+            ctx.beginPath();
+            ctx.moveTo(-10, 0);
+            ctx.lineTo(-15, 0);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = turtle.penDown ? 'darkgreen' : 'darkgray';
+            ctx.stroke();
+            
+            // Индикатор пера
+            ctx.beginPath();
+            ctx.arc(0, 0, 3, 0, Math.PI * 2);
+            ctx.fillStyle = turtle.penDown ? 'red' : 'white';
+            ctx.fill();
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+            
+            // Эффект движения
+            if (animationState.isAnimating && !animationState.isPaused) {
+                ctx.beginPath();
+                ctx.arc(0, 0, 15, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(0, 150, 255, 0.3)`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+            
+            ctx.restore();
+        }
+        
+        // Управление анимацией
+        function addToAnimation(command, value) {
+            animationState.commands.push({ command, value, completed: false });
+        }
+        
+        function clearAnimation() {
+            animationState.commands = [];
+            animationState.currentCommandIndex = 0;
+        }
+        
+        function executeAnimationStep() {
+            if (animationState.isPaused || animationState.currentCommandIndex >= animationState.commands.length) {
+                return false;
+            }
+            
+            const cmd = animationState.commands[animationState.currentCommandIndex];
+            
+            switch(cmd.command) {
+                case 'forward':
+                    const forwardStep = Math.min(animationState.stepSize, cmd.value);
+                    forward(forwardStep);
+                    cmd.value -= forwardStep;
+                    if (cmd.value <= 0) {
+                        animationState.currentCommandIndex++;
+                    }
+                    break;
+                    
+                case 'backward':
+                    const backwardStep = Math.min(animationState.stepSize, cmd.value);
+                    forward(-backwardStep);
+                    cmd.value -= backwardStep;
+                    if (cmd.value <= 0) {
+                        animationState.currentCommandIndex++;
+                    }
+                    break;
+                    
+                case 'right':
+                    const rightStep = Math.min(animationState.rotationStep, cmd.value);
+                    right(rightStep);
+                    cmd.value -= rightStep;
+                    if (cmd.value <= 0) {
+                        animationState.currentCommandIndex++;
+                    }
+                    break;
+                    
+                case 'left':
+                    const leftStep = Math.min(animationState.rotationStep, cmd.value);
+                    left(leftStep);
+                    cmd.value -= leftStep;
+                    if (cmd.value <= 0) {
+                        animationState.currentCommandIndex++;
+                    }
+                    break;
+            }
+            
+            if (animationState.currentCommandIndex >= animationState.commands.length) {
+                stopAnimation();
+                updateStatus("Анимация завершена!");
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function animationLoop() {
+            if (!animationState.isAnimating || animationState.isPaused) return;
+            
+            // Очищаем только область черепахи для плавной анимации
+            const turtleRadius = 20;
+            ctx.clearRect(
+                turtle.x - turtleRadius - 5, 
+                turtle.y - turtleRadius - 5, 
+                turtleRadius * 2 + 10, 
+                turtleRadius * 2 + 10
+            );
+            
+            // Перерисовываем черепаху
+            drawTurtle();
+            
+            // Выполняем шаг анимации
+            executeAnimationStep();
+            
+            // Продолжаем анимацию
+            if (animationState.isAnimating && !animationState.isPaused) {
+                const speed = animationState.speed;
+                const delay = Math.max(10, 100 - speed);
+                animationState.animationId = setTimeout(animationLoop, delay);
+            }
+        }
+        
+        function startAnimation() {
+            if (animationState.commands.length === 0) {
+                updateStatus("Нет команд для анимации!");
+                return;
+            }
+            
+            animationState.isAnimating = true;
+            animationState.isPaused = false;
+            updateStatus("Анимация запущена...");
+            animationLoop();
+        }
+        
+        function stopAnimation() {
+            animationState.isAnimating = false;
+            animationState.isPaused = false;
+            clearTimeout(animationState.animationId);
+            updateStatus("Анимация остановлена");
+            drawTurtle();
+            updateInfo();
+        }
+        
+        function pauseAnimation() {
+            animationState.isPaused = !animationState.isPaused;
+            updateStatus(animationState.isPaused ? "Анимация на паузе" : "Анимация продолжается");
+        }
+        
+        function stepAnimation() {
+            if (!animationState.isAnimating) {
+                animationState.isAnimating = true;
+                animationState.isPaused = false;
+            }
+            
+            executeAnimationStep();
+            drawTurtle();
+            updateInfo();
+        }
+        
+        // Управление скоростью
+        document.getElementById('animationSpeed').addEventListener('input', function(e) {
+            animationState.speed = parseInt(e.target.value);
+            document.getElementById('speedValue').textContent = animationState.speed;
+            // Динамически изменяем скорость шага
+            animationState.stepSize = 2 + (animationState.speed / 20);
+            animationState.rotationStep = 2 + (animationState.speed / 25);
+        });
+        
+        // Основные команды
+        function moveForward() {
+            const distance = getInputValue('distance', 50);
+            forward(distance);
+        }
+        
+        function moveBackward() {
+            const distance = getInputValue('distance', 50);
+            backward(distance);
+        }
+        
+        function turnLeft() {
+            const degrees = getInputValue('degrees', 90);
+            left(degrees);
+        }
+        
+        function turnRight() {
+            const degrees = getInputValue('degrees', 90);
+            right(degrees);
+        }
+        
+        // Очистка и сброс
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawTurtle();
+        }
+        
+        function resetTurtle() {
+            stopAnimation();
+            turtle.x = canvas.width / 2;
+            turtle.y = canvas.height / 2;
+            turtle.angle = 0;
+            turtle.penDown = true;
+            turtle.color = 'black';
+            clearAnimation();
+            clearCanvas();
+            updateStatus("Черепаха сброшена в центр");
+        }
+        
+        // Анимированные фигуры
+        function animateSquare() {
+            stopAnimation();
+            clearAnimation();
+            const size = getInputValue('shapeSize', 100);
+            
+            penDown();
+            for (let i = 0; i < 4; i++) {
+                addToAnimation('forward', size);
+                addToAnimation('right', 90);
+            }
+            
+            updateStatus("Квадрат добавлен в очередь анимации");
+            startAnimation();
+        }
+        
+        function animateTriangle() {
+            stopAnimation();
+            clearAnimation();
+            const size = getInputValue('shapeSize', 100);
+            
+            penDown();
+            for (let i = 0; i < 3; i++) {
+                addToAnimation('forward', size);
+                addToAnimation('left', 120);
+            }
+            
+            updateStatus("Треугольник добавлен в очередь анимации");
+            startAnimation();
+        }
+        
+        function animateSpiral() {
+            stopAnimation();
+            clearAnimation();
+            
+            penDown();
+            for (let i = 0; i < 30; i++) {
+                addToAnimation('forward', i * 3);
+                addToAnimation('right', 92);
+            }
+            
+            updateStatus("Спираль добавлена в очередь анимации");
+            startAnimation();
+        }
+        
+        function animateCircle() {
+            stopAnimation();
+            clearAnimation();
+            const radius = 50;
+            const steps = 36;
+            const stepLength = (2 * Math.PI * radius) / steps;
+            
+            penDown();
+            for (let i = 0; i < steps; i++) {
+                addToAnimation('forward', stepLength);
+                addToAnimation('right', 10);
+            }
+            
+            updateStatus("Круг добавлен в очередь анимации");
+            startAnimation();
+        }
+        
+        function animateFlower() {
+            stopAnimation();
+            clearAnimation();
+            const size = getInputValue('shapeSize', 80);
+            
+            penDown();
+            for (let petal = 0; petal < 8; petal++) {
+                for (let i = 0; i < 2; i++) {
+                    addToAnimation('forward', size);
+                    addToAnimation('right', 45);
+                    addToAnimation('forward', size);
+                    addToAnimation('right', 135);
+                }
+                addToAnimation('right', 45);
+            }
+            
+            updateStatus("Цветок добавлен в очередь анимации");
+            startAnimation();
+        }
+        
+        function animateStar() {
+            stopAnimation();
+            clearAnimation();
+            const size = getInputValue('shapeSize', 100);
+            
+            penDown();
+            for (let i = 0; i < 5; i++) {
+                addToAnimation('forward', size);
+                addToAnimation('right', 144);
+            }
+            
+            updateStatus("Звезда добавлена в очередь анимации");
+            startAnimation();
+        }
+        
+        function animateRandom() {
+            stopAnimation();
+            clearAnimation();
+            
+            penDown();
+            const commands = ['forward', 'backward', 'right', 'left'];
+            for (let i = 0; i < 20; i++) {
+                const randomCmd = commands[Math.floor(Math.random() * commands.length)];
+                const randomValue = Math.floor(Math.random() * 100) + 20;
+                addToAnimation(randomCmd, randomValue);
+            }
+            
+            updateStatus("Случайная анимация добавлена в очередь");
+            startAnimation();
+        }
+        
+        // Ручное добавление команд в анимацию
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'a') {
+                const distance = getInputValue('distance', 50);
+                addToAnimation('forward', distance);
+                updateStatus(`Добавлена команда "вперед на ${distance}" в анимацию`);
+            }
+            if (e.ctrlKey && e.key === 'r') {
+                const degrees = getInputValue('degrees', 90);
+                addToAnimation('right', degrees);
+                updateStatus(`Добавлена команда "поворот направо на ${degrees}°" в анимацию`);
+            }
+        });
+        
+        // Инициализация
+        function init() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawTurtle();
+            updateInfo();
+            updateStatus("Готов к работе! Используйте Ctrl+A для добавления команды 'вперед' в анимацию");
+            
+            // Настройка начальной скорости
+            animationState.stepSize = 2 + (animationState.speed / 20);
+            animationState.rotationStep = 2 + (animationState.speed / 25);
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>

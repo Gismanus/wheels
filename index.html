@@ -39,18 +39,27 @@
     <header class="header">
         <div class="container header__inner">
             <a class="logo" href="/">Лого</a>
-            <nav class="nav">
-                <a class="nav__link" href="product.html">Каталог</a>
-                <a class="nav__link" href="about.html">О нас</a>
-                <a class="nav__link" href="delivery.html">Доставка</a>
-            </nav>
-            <div class="header__contacts">
-                <a class="header__phone" href="tel:+...">
-                    <span class="icon icon_phone"></span>
-                    +7 (915) 177-55-21
-                </a>
-                <button class="callback-btn" id="callback-btn" type="button">Заказать обратный звонок</button>
+            <button class="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-container">
+
+                <nav class="nav">
+                    <a class="nav__link" href="product.html">Каталог</a>
+                    <a class="nav__link" href="about.html">О нас</a>
+                    <a class="nav__link" href="delivery.html">Доставка</a>
+                </nav>
+                <div class="header__contacts">
+                    <a class="header__phone" href="tel:+...">
+                        <span class="icon icon_phone"></span>
+                        +7 (915) 177-55-21
+                    </a>
+                    <button class="callback-btn" id="callback-btn" type="button">Заказать обратный звонок</button>
+                </div>
             </div>
+
         </div>
     </header>
     <section class="hero">
@@ -238,6 +247,21 @@
     </script>
     <script src="/js/submitForm.js">
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.burger').on('click', function (e) {
+                e.stopPropagation();
+                $('.nav-container').toggleClass('active');
+            });
+
+            // Закрытие при клике вне меню
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.nav-container, .burger').length) {
+                    $('.nav-container').removeClass('active');
+                }
+            });
+        });
     </script>
 </body>
 

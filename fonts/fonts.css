@@ -123,3 +123,60 @@
     font-weight: 900;
     font-style: italic;
 }
+
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    .hero__title {
+        font-size: 32px;
+    }
+
+    .hero__tagline {
+        font-size: 18px;
+    }
+
+    .about__title,
+    .products__title,
+    .features__title,
+    .partners__title {
+        font-size: 28px;
+    }
+
+    .nav__link,
+    .header__phone {
+        font-size: 17px;
+    }
+
+    .callback-btn {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+
+    .footer__col h3 {
+        font-size: 18px;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    .feedback-form__title {
+        font-size: 22px;
+    }
+
+    .feedback-form__text p {
+        font-size: 14px;
+    }
+
+    .feedback-form__field label,
+    .textfield,
+    .feedback-form__btn {
+        font-size: 14px;
+    }
+
+    .feedback-form__agree {
+        font-size: 10px;
+    }
+}
