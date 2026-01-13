@@ -90,6 +90,8 @@ button {
 /* Контейнер навигации */
 .nav-container {
     display: flex;
+    justify-content: space-between;
+    width: 70%;
 }
 
 /* Адаптив */
