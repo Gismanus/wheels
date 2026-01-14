@@ -25,3 +25,4 @@
     </div>
 </header>
 <?php include 'components/feedback-popup.php'; ?>
+<script src="js/toggle-nav.js"></script>
