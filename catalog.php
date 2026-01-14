@@ -9,8 +9,7 @@ include 'components/header.php';
         <!-- Продукты загрузятся через JS -->
     </div>
 </main>
-<!-- <script src="/js/fetch-products.js">
+<script src="/js/fetch-products.js">
     
-</script> -->
+</script>
 <?php include 'components/footer.php'; ?>
-<?php include 'components/feedback-popup.php'; ?>

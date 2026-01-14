@@ -21,6 +21,7 @@
     <link href="/styles/feedback.css" type="text/css" rel="stylesheet">
     <link href="/styles/about-page.css" type="text/css" rel="stylesheet">
     <link href="/styles/product-page.css" type="text/css" rel="stylesheet">
+    <link href="/styles/catalog-page.css" type="text/css" rel="stylesheet">
 
     <link href="/styles/footer.css" type="text/css" rel="stylesheet">
 
