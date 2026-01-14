@@ -31,3 +31,4 @@ include 'components/header.php';
     <script src="/js/product.js"></script>
 
 <?php include 'components/footer.php'; ?>
+<?php include 'components/feedback-popup.php'; ?>

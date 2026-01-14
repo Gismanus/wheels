@@ -25,4 +25,6 @@ include 'components/header.php';
             });
     </script>
 <?php include 'components/footer.php'; ?>
+<?php include 'components/feedback-popup.php'; ?>
+
 

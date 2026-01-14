@@ -24,3 +24,4 @@
 
     </div>
 </header>
+<?php include 'components/feedback-popup.php'; ?>

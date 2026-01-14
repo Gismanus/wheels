@@ -1,34 +1,3 @@
-<?php
-$page_title = 'Каталог';
-include 'components/head.php';
-include 'components/header.php';
-?>
-<main class="about-page container">
-    <h1>О нашей компании</h1>
-    <p>Мы более 10 лет предоставляем современные инвалидные коляски, помогая людям обрести мобильность и комфорт.
-    </p>
-
-    <section class="about-page__section">
-        <h2>Наша миссия</h2>
-        <p>Обеспечить каждого клиента надёжным, удобным и технологичным средством передвижения.</p>
-    </section>
-
-    <section class="about-page__section">
-        <h2>Наши ценности</h2>
-        <ul>
-            <li>Качество и безопасность</li>
-            <li>Индивидуальный подход</li>
-            <li>Профессиональная поддержка</li>
-        </ul>
-    </section>
-
-    <section class="about-page__section">
-        <h2>Контакты</h2>
-        <p>Телефон: +7 (915) 177-55-21</p>
-        <p>Адрес: Муниципальный округ Коммунарка, ул. Николо-Хованская, д.20</p>
-        <p>Email: tsrpochta@bk.ru</p>
-    </section>
-</main>
 <div id="feedback-popup" class="feedback-popup" style="display: none;">
     <button class="feedback-popup__close" aria-label="Закрыть">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="2">
@@ -72,10 +41,5 @@ include 'components/header.php';
     </div>
 
 </div>
-
-<?php include 'components/footer.php'; ?>
-
 <script src="/js/show-feedback.js"></script>
-<script src="/js/submitForm.js">
-
-</script>
+<script src="/js/submitForm.js"></script>
