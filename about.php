@@ -1,60 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="/images/favicon.svg " type="image/x-icon">
-
-    <title>Магазин инвалидных колясок в Москве</title>
-
-    <link rel="stylesheet" href="/fonts/fonts.css">
-
-    <link href="styles/base.css" type="text/css" rel="stylesheet">
-    <link href="/fonts/fonts.css" type="text/css" rel="stylesheet">
-    <link href="/styles/hero.css" type="text/css" rel="stylesheet">
-    <link href="/styles/about.css" type="text/css" rel="stylesheet">
-    <link href="/styles/products.css" type="text/css" rel="stylesheet">
-    <link href="/styles/partners.css" type="text/css" rel="stylesheet">
-    <link href="/styles/features.css" type="text/css" rel="stylesheet">
-    <link href="/styles/feedback.css" type="text/css" rel="stylesheet">
-    <link href="/styles/about-page.css" type="text/css" rel="stylesheet">
-    <link href="/styles/product-page.css" type="text/css" rel="stylesheet">
-
-    <link href="/styles/footer.css" type="text/css" rel="stylesheet">
-
-
-    <link href="/styles/response.css" type="text/css" rel="stylesheet">
-
-    <script src="/js/jQuery.js"></script>
-
-    <style>
-        .new-class {
-            background: #000;
-        }
-    </style>
-</head>
-
-<body>
-
-    <header class="header">
-        <div class="container header__inner">
-            <a class="logo" href="/">Лого</a>
-            <nav class="nav">
-                <a class="nav__link" href="product.html">Каталог</a>
-                <a class="nav__link" href="about.html">О нас</a>
-                <a class="nav__link" href="delivery.html">Доставка</a>
-            </nav>
-            <div class="header__contacts">
-                <a class="header__phone" href="tel:+...">
-                    <span class="icon icon_phone"></span>
-                    +7 (915) 177-55-21
-                </a>
-                <button id="show-feedback" class="callback-btn">Заказать обратный звонок</button>
-            </div>
-        </div>
-    </header>
+<?php
+$page_title = 'Каталог';
+include 'components/head.php';
+include 'components/header.php';
+?>
     <main class="about-page container">
         <h1>О нашей компании</h1>
         <p>Мы более 10 лет предоставляем современные инвалидные коляски, помогая людям обрести мобильность и комфорт.
@@ -81,34 +29,6 @@
             <p>Email: tsrpochta@bk.ru</p>
         </section>
     </main>
-    <footer class="footer">
-        <div class="container footer__inner">
-            <div class="footer__col">
-                <div class="footer__logo"></div>
-                <p>Телефон: +7 (915) 177-55-21</p>
-                <p>Адрес: Муниципальный округ Коммунарка, ул. Николо-Хованская, д.20</p>
-            </div>
-            <div class="footer__col">
-                <h3>Навигация</h3>
-                <a href="products/">Каталог</a>
-                <a href="about.html">О нас</a>
-                <a href="delivery.html">Доставка</a>
-            </div>
-            <div class="footer__col">
-                <h3>Партнёрам</h3>
-                <a href="#">Сотрудничество</a>
-                <a href="#">Документы</a>
-            </div>
-            <div class="footer__col">
-
-                <div class="footer__badges">
-                    <div class="footer__badge bage_steplife"></div>
-                    <div class="footer__badge bage_simphony"></div>
-                    <div class="footer__badge bage_armed"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
     <div id="feedback-popup" class="feedback-popup" style="display: none;">
         <button class="feedback-popup__close" aria-label="Закрыть">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="2">
@@ -196,6 +116,4 @@
     <script src="/js/submitForm.js">
 
     </script>
-</body>
-
-</html>
+<?php include 'components/footer.php'; ?>
