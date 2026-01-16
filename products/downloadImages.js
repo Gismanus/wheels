@@ -2,49 +2,18 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
-// Получаем URL сайта из аргументов командной строки
+// Получаем URL сайта и имя папки из аргументов командной строки
 const websiteUrl = process.argv[2];
+const customFolderName = process.argv[3]; // Второй параметр - имя папки
 
-if (!websiteUrl) {
-    console.error('❌ Пожалуйста, укажите URL сайта в качестве параметра:');
-    console.error('   node script.js https://example.com/page/');
+if (!websiteUrl || !customFolderName) {
+    console.error('❌ Пожалуйста, укажите URL сайта и имя папки:');
+    console.error('   node script.js https://example.com/page/ my_product_images');
     process.exit(1);
 }
 
-// Функция для получения последних символов из URL перед последним "/"
-function getLastCharsFromUrl(url) {
-    try {
-        const urlObj = new URL(url);
-        const pathname = urlObj.pathname;
-        
-        // Удаляем завершающий слеш если есть
-        let cleanPath = pathname.replace(/\/$/, '');
-        
-        // Если есть путь (не корневая страница)
-        if (cleanPath && cleanPath !== '/') {
-            // Получаем последнюю часть пути
-            const parts = cleanPath.split('/');
-            let lastPart = parts[parts.length - 1];
-            
-            // Берем последние 20 символов (или меньше, если строка короче)
-            const charsToTake = Math.min(20, lastPart.length);
-            let result = lastPart.slice(-charsToTake);
-            
-            // Убираем небезопасные символы для имени папки
-            result = result.replace(/[^a-zA-Z0-9а-яА-Я_-]/g, '_');
-            
-            // Если после фильтрации пусто, используем "images"
-            if (!result) result = 'images';
-            
-            return result;
-        }
-        
-        return 'images'; // По умолчанию для корневой страницы
-    } catch (error) {
-        console.error('Ошибка при разборе URL:', error.message);
-        return 'images';
-    }
-}
+// Убираем небезопасные символы из имени папки
+const safeFolderName = customFolderName.replace(/[^a-zA-Z0-за-яА-Я_-]/g, '_');
 
 // Функция для получения расширения файла из URL
 function getFileExtension(imgUrl) {
@@ -66,14 +35,19 @@ function getFileExtension(imgUrl) {
 async function downloadAllImages() {
     try {
         console.log(`📥 Скачиваю изображения с: ${websiteUrl}`);
+        console.log(`📁 Папка назначения: ${safeFolderName}`);
 
         // 1. Получаем HTML страницы
-        const response = await axios.get(websiteUrl);
+        const response = await axios.get(websiteUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            },
+            timeout: 10000
+        });
         const html = response.data;
 
-        // 2. Создаем основную папку из последних символов URL
-        const folderName = getLastCharsFromUrl(websiteUrl);
-        const outputFolder = `./${folderName}`;
+        // 2. Создаем основную папку с кастомным именем
+        const outputFolder = `./${safeFolderName}`;
 
         if (!fs.existsSync(outputFolder)) {
             fs.mkdirSync(outputFolder, { recursive: true });
@@ -138,7 +112,8 @@ async function downloadAllImages() {
                     responseType: 'stream',
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                    }
+                    },
+                    timeout: 5000
                 });
 
                 // Проверяем content-type для уточнения расширения
@@ -203,7 +178,7 @@ async function downloadAllImages() {
                 console.log(`[${i + 1}/${images.length}] ✓ ${extension}/${filename}`);
 
             } catch (err) {
-                console.log(`[${i + 1}/${images.length}] ✗ Ошибка: ${imgUrl.substring(0, 50)}...`);
+                console.log(`[${i + 1}/${images.length}] ✗ Ошибка: ${imgUrl.substring(0, 50)}... (${err.message})`);
             }
 
             // Задержка чтобы не нагружать сервер
@@ -224,6 +199,8 @@ async function downloadAllImages() {
         console.error('❌ Ошибка:', error.message);
         if (error.code === 'ENOTFOUND') {
             console.error('   Проверьте подключение к интернету и правильность URL.');
+        } else if (error.code === 'ECONNABORTED') {
+            console.error('   Превышено время ожидания ответа от сервера.');
         }
     }
 }

@@ -11,8 +11,7 @@ Skeleton.css
 /serv
 /example
 
-
-
+products/downloadImages.js
 index_test.html
 
 Paymentscheme.md
@@ -21,3 +20,8 @@ tasks.txt
 prompt
 orders.json
 feedback.json
+
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
