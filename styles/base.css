@@ -64,6 +64,7 @@ button {
 
 .nav {
     display: flex;
+    align-items: center;
     gap: 50px;
 }
 
@@ -160,6 +161,50 @@ button {
     color: #1A5276;
 }
 
+.nav__link_cart {
+    margin-left: 80px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.header__cart {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2C3E50;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+    padding-right: 10px;
+}
+
+.header__cart:hover {
+    color: #1A5276;
+}
+
+.cart-count {
+    position: absolute;
+    bottom: -5px;
+    /* Снизу относительно иконки */
+    right: -5px;
+    /* Справа относительно иконки */
+    background: #A7E7FE;
+    color: #1D1D1B;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #F8FCFE;
+    line-height: 1;
+}
+
 .header__contacts {
     display: flex;
     align-items: center;
@@ -181,6 +226,13 @@ button {
 .icon_phone {
     background-color: #2C3E50;
     mask-image: url('/images/icons/icon_phone.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+}
+
+.icon_cart {
+    background-color: #2C3E50;
+    mask-image: url('/images/icons/icon_cart.svg');
     mask-size: contain;
     mask-repeat: no-repeat;
 }
@@ -208,14 +260,14 @@ button {
 }
 
 @media (min-width: 769px) {
-  .header__phone[href^="tel:"] {
-    pointer-events: none;
-    cursor: default;
-  }
+    .header__phone[href^="tel:"] {
+        pointer-events: none;
+        cursor: default;
+    }
 }
 
 @media (max-width: 768px) {
-  .header__phone[href^="tel:"] {
-    pointer-events: auto;
-  }
+    .header__phone[href^="tel:"] {
+        pointer-events: auto;
+    }
 }
