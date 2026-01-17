@@ -1,3 +1,4 @@
+/* Твои оригинальные стили */
 .catalog {
     padding: 60px 20px;
 }
@@ -38,6 +39,7 @@
 }
 
 .catalog-card__title {
+    height: 70px;
     font-size: 20px;
     color: #2C3E50;
     margin-bottom: 10px;
@@ -64,7 +66,45 @@
     background: #8FD8F0;
 }
 
-/* Адаптив каталога */
+/* Мои добавления (кнопка корзины и контейнер) */
+.catalog-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.catalog-card__cart-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #A7E7FE;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.catalog-card__cart-btn:hover {
+    background: #8FD8F0;
+    transform: scale(1.1);
+}
+
+.catalog-card__cart-btn .icon_cart {
+    width: 22px;
+    height: 22px;
+    background-color: #1D1D1B;
+    mask-image: url('/images/icons/icon_cart.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+/* Адаптив каталога (твоё + дополнения) */
 @media (max-width: 768px) {
     .catalog__grid {
         grid-template-columns: repeat(2, 1fr);
@@ -75,5 +115,15 @@
 @media (max-width: 480px) {
     .catalog__grid {
         grid-template-columns: 1fr;
+    }
+
+    .catalog-card__actions {
+        flex-direction: column;
+    }
+
+    .catalog-card__cart-btn {
+        width: 100%;
+        border-radius: 8px;
+        height: 40px;
     }
 }

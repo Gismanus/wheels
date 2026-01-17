@@ -21,20 +21,23 @@ $(document).ready(function () {
                 return `
                     <div class="catalog-card">
                         <img src="${product.image || 'placeholder.jpg'}" 
-                             alt="${product.title || 'Кресло-коляска'}" 
-                             class="catalog-card__image"
-                             onerror="this.src='placeholder.jpg'">
+                            alt="${product.title || 'Кресло-коляска'}" 
+                            class="catalog-card__image"
+                            onerror="this.src='placeholder.jpg'">
                         
                         <h3 class="catalog-card__title">${product.title || 'Кресло-коляска'}</h3>
                         
-                       
-                        
                         <p class="catalog-card__price">${priceDisplay}</p>
                         
-                        <a href="product.php?id=${product.id}" class="catalog-card__link">
-                            Подробнее
-                            <span class="arrow">→</span>
-                        </a>
+                        <div class="catalog-card__actions">
+                            <a href="product.php?id=${product.id}" class="catalog-card__link">
+                                Подробнее
+                                <span class="arrow">→</span>
+                            </a>
+                            <button class="catalog-card__cart-btn" data-id="${product.id}">
+                                <span class="icon icon_cart"></span>
+                            </button>
+                        </div>
                     </div>
                 `;
             }).join('');
