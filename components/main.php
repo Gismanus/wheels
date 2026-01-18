@@ -8,18 +8,20 @@
         <div class="container">
             <h2 class="products__title">Наши продукты</h2>
             <div class="products__list">
-                <div class="product-card">
-                    <img src="/images/image_36.png" alt="" class="product-card__image"
-                        style="background: #fff; object-fit: contain;">
-                    <h3>Трость опорная</h3>
-                    <p>Лёгкая, манёвренная, для ежедневного использования.</p>
-                </div>
-                <div class="product-card">
-                    <img src="/images/image_179.jpg" alt="" class="product-card__image"
+                <a href="/product.php?id=4" class="product-card">
+                    
+                        <img src="/images/image_36.png" alt="" class="product-card__image"
+                            style="background: #fff; object-fit: contain;">
+                        <h3>Трость опорная</h3>
+                        <p>Лёгкая, манёвренная, для ежедневного использования.</p>
+                    
+                </a>
+                <a href="product.php?id=2" class="product-card">
+                    <img src="/products/07-03-01_Ortonica_S2000/image_39.jpg" alt="" class="product-card__image"
                         style="background: #fff; object-fit: contain;">
                     <h3>Коляска инвалидная</h3>
                     <p>C регулируемым сиденьем.</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -37,9 +39,15 @@
         <div class="container">
             <h2 class="partners__title">Наши партнёры</h2>
             <div class="partners__list">
-                <div class="partner-badge bage_steplife"></div>
-                <div class="partner-badge bage_simphony"></div>
-                <div class="partner-badge bage_armed"></div>
+                <a href="https://steplife.ru/">
+                    <div class="partner-badge bage_steplife"></div>
+                </a>
+                <a href="https://t.me/simfoniyapobedy">
+                    <div class="partner-badge bage_simphony"></div>
+                </a>
+                <a href="https://www.armed.ru/">
+                    <div class="partner-badge bage_armed"></div>
+                </a>
                 <!-- <div class="partner-badge partner_steplife logo_medtechno"></div> -->
             </div>
         </div>

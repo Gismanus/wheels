@@ -6,7 +6,7 @@ include 'components/main.php';
 include 'components/footer.php';
 
 ?>
-
+<script src="/js/fetch-featured.js"></script>
 </body>
 
 </html>
