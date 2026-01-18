@@ -68,6 +68,7 @@
     <link href="/styles/response.css" type="text/css" rel="stylesheet">
 
     <script src="/js/jQuery.js"></script>
+    <script src="/js/cart-counter.js"></script>
 
     <style>
         .new-class {
