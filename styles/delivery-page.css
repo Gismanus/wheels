@@ -1,0 +1,133 @@
+.delivery-page {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.delivery-page__title {
+    font-size: 36px;
+    color: #2C3E50;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.delivery-section {
+    margin-bottom: 60px;
+}
+
+.delivery-section__subtitle {
+    font-size: 24px;
+    color: #1A5276;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #E1F5FE;
+    padding-bottom: 10px;
+}
+
+/* Таблица */
+.delivery-table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.delivery-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFF;
+    min-width: 800px;
+}
+
+.delivery-table th {
+    background: #F8FCFE;
+    padding: 18px 15px;
+    text-align: center;
+    font-weight: 700;
+    color: #2C3E50;
+    border: 1px solid #E1F5FE;
+}
+
+.delivery-table td {
+    padding: 18px 15px;
+    border: 1px solid #E1F5FE;
+    text-align: center;
+    color: #555;
+}
+
+.delivery-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: #2C3E50;
+    background: #F8FCFE;
+    width: 40%;
+}
+
+.delivery-table .free {
+    color: #27AE60;
+    font-weight: 700;
+}
+
+/* Условия */
+.delivery-conditions {
+    background: #F8FCFE;
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 5px solid #A7E7FE;
+}
+
+.delivery-conditions p {
+    font-size: 18px;
+    color: #2C3E50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.delivery-list {
+    list-style: none;
+    padding: 0;
+}
+
+.delivery-list li {
+    margin-bottom: 20px;
+    padding-left: 30px;
+    position: relative;
+    line-height: 1.6;
+    color: #555;
+}
+
+.delivery-list li:before {
+    content: "•";
+    color: #A7E7FE;
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.delivery-list strong {
+    color: #2C3E50;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .delivery-page {
+        padding: 40px 15px;
+    }
+
+    .delivery-page__title {
+        font-size: 30px;
+    }
+
+    .delivery-section__subtitle {
+        font-size: 22px;
+    }
+
+    .delivery-table th,
+    .delivery-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    .delivery-conditions {
+        padding: 20px;
+    }
+}

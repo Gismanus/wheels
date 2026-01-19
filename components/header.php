@@ -11,7 +11,7 @@
             <nav class="nav">
                 <a class="nav__link" href="catalog.php">Каталог</a>
                 <a class="nav__link" href="about.php">О нас</a>
-                <a class="nav__link" href="product.php">Образец</a>
+                <a class="nav__link" href="delivery.php">Доставка</a>
                 <a class="nav__link nav__link_cart" href="cart.php">
                     <span class="icon icon_cart"></span>
                     <span class="cart-count">0</span>

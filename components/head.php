@@ -62,6 +62,7 @@
     <link href="/styles/product-page.css" type="text/css" rel="stylesheet">
     <link href="/styles/catalog-page.css" type="text/css" rel="stylesheet">
     <link href="/styles/cart-page.css" type="text/css" rel="stylesheet">
+    <link href="/styles/delivery-page.css" type="text/css" rel="stylesheet">
 
     <link href="/styles/footer.css" type="text/css" rel="stylesheet">
 

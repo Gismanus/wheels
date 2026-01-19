@@ -116,3 +116,14 @@ $(document).ready(function() {
         location.reload();
     }
 });
+
+// Показать/скрыть форму
+document.getElementById('show-order-form').addEventListener('click', function() {
+    document.getElementById('order-form').style.display = 'block';
+    this.style.display = 'none';
+});
+
+document.getElementById('cancel-order-form').addEventListener('click', function() {
+    document.getElementById('order-form').style.display = 'none';
+    document.getElementById('show-order-form').style.display = 'block';
+});
