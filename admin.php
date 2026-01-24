@@ -4,9 +4,19 @@ header('Content-Type: text/html; charset=utf-8');
 // Загрузка данных
 $feedbackFile = __DIR__ . '/feedback.json';
 $productsFile = __DIR__ . '/products.json';
+$ordersFile = __DIR__ . '/orders.json';
 
 $feedback = file_exists($feedbackFile) ? json_decode(file_get_contents($feedbackFile), true) : [];
 $products = file_exists($productsFile) ? json_decode(file_get_contents($productsFile), true) : [];
+$orders = file_exists($ordersFile) ? json_decode(file_get_contents($ordersFile), true) : [];
+
+// Статистика заказов
+$totalOrders = count($orders);
+$totalRevenue = array_reduce($orders, function($sum, $order) {
+    $total = $order['total'] ?? '0 ₽';
+    $num = preg_replace('/[^\d]/', '', $total);
+    return $sum + intval($num);
+}, 0);
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +35,7 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
             display: flex;
             border-bottom: 2px solid #ccc;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .tab {
@@ -34,6 +45,7 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
             border-bottom: none;
             margin-right: 5px;
             background: #f5f5f5;
+            flex-shrink: 0;
         }
 
         .tab.active {
@@ -173,6 +185,77 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
             text-align: right;
             padding-right: 4px;
         }
+
+        /* СТИЛИ ДЛЯ ЗАКАЗОВ */
+        .order-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-new {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .status-processing {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .order-items-summary {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .order-items-summary span {
+            display: inline-block;
+            margin-right: 10px;
+            background: #f8f9fa;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Статистика заказов */
+        .orders-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 150px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+            color: #2C3E50;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
     </style>
 </head>
 
@@ -183,6 +266,7 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
     <div class="tabs">
         <div class="tab active" onclick="showTab('feedback')">📋 Заявки (<?= count($feedback) ?>)</div>
         <div class="tab" onclick="showTab('products')">🛒 Товары (<?= count($products) ?>)</div>
+        <div class="tab" onclick="showTab('orders')">📦 Заказы (<?= count($orders) ?>)</div>
     </div>
 
     <!-- Вкладка 1: Заявки -->
@@ -214,7 +298,7 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
         <?php endif; ?>
     </div>
 
-    <!-- Вкладка 2: Товары (Important Values) -->
+    <!-- Вкладка 2: Товары -->
     <div id="products-tab" class="tab-content">
         <h2>Товары - ключевые характеристики</h2>
         <?php if (empty($products)): ?>
@@ -233,18 +317,11 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
                     <?php foreach ($products as $product):
                         $importantValues = $product['important_values'] ?? [];
                         $totalItems = count($importantValues);
-                        $itemsPerRow = 2; // 2 пары ключ-значение в строке
                     ?>
                         <tr>
-                            <td>
-                                <strong>#<?= $product['id'] ?? '' ?></strong>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($product['title'] ?? 'Без названия') ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($product['price'] ?? '—') ?>
-                            </td>
+                            <td><strong>#<?= $product['id'] ?? '' ?></strong></td>
+                            <td><?= htmlspecialchars($product['title'] ?? 'Без названия') ?></td>
+                            <td><?= htmlspecialchars($product['price'] ?? '—') ?></td>
                             <td>
                                 <?php if (!empty($importantValues)): ?>
                                     <table class="compact-grid">
@@ -252,20 +329,14 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
                                         $i = 0;
                                         $items = array_values($importantValues);
                                         $keys = array_keys($importantValues);
-
                                         while ($i < $totalItems):
                                         ?>
                                             <tr>
-                                                <!-- Первая пара ключ-значение -->
                                                 <td class="compact-key"><?= $i < $totalItems ? htmlspecialchars($keys[$i]) : '' ?></td>
                                                 <td class="compact-value"><?= $i < $totalItems ? htmlspecialchars($items[$i]) : '' ?></td>
-
                                                 <?php $i++; ?>
-
-                                                <!-- Вторая пара ключ-значение -->
                                                 <td class="compact-key"><?= $i < $totalItems ? htmlspecialchars($keys[$i]) : '' ?></td>
                                                 <td class="compact-value"><?= $i < $totalItems ? htmlspecialchars($items[$i]) : '' ?></td>
-
                                                 <?php $i++; ?>
                                             </tr>
                                         <?php endwhile; ?>
@@ -283,6 +354,80 @@ $products = file_exists($productsFile) ? json_decode(file_get_contents($products
             </table>
         <?php endif; ?>
     </div>
+
+    <!-- Вкладка 3: Заказы -->
+    <div id="orders-tab" class="tab-content">
+        <h2>Заказы</h2>
+        
+        <?php if (empty($orders)): ?>
+            <p class="empty">Нет заказов.</p>
+        <?php else: ?>
+            <!-- Статистика -->
+            <div class="orders-stats">
+                <div class="stat-card">
+                    <span class="stat-value"><?= count($orders) ?></span>
+                    <span class="stat-label">Всего заказов</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value"><?= count($newOrders) ?></span>
+                    <span class="stat-label">Новые</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value"><?= number_format($totalRevenue, 0, '', ' ') ?> ₽</span>
+                    <span class="stat-label">Общая сумма</span>
+                </div>
+            </div>
+
+            <!-- Таблица заказов -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Клиент</th>
+                        <th>Контакты</th>
+                        <th>Состав заказа</th>
+                        <th>Сумма</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach (array_reverse($orders) as $order): 
+                        $status = $order['status'] ?? 'new';
+                        $statusClass = 'status-' . $status;
+                    ?>
+                        <tr>
+                            <td><strong>#<?= $order['id'] ?? '' ?></strong></td>
+                            <td><?= htmlspecialchars($order['date'] ?? '') ?></td>
+                            <td>
+                                <strong><?= htmlspecialchars($order['customer']['name'] ?? '') ?></strong><br>
+                                <?= htmlspecialchars($order['customer']['email'] ?? '') ?>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($order['customer']['phone'] ?? '') ?><br>
+                                <?php if (!empty($order['customer']['comment'])): ?>
+                                    <small style="color:#666;"><?= htmlspecialchars($order['customer']['comment']) ?></small>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <div class="order-items-summary">
+                                    <?php foreach ($order['cart'] ?? [] as $item): ?>
+                                        <span>
+                                            <?= htmlspecialchars($item['title'] ?? '') ?> × <?= $item['quantity'] ?? 1 ?>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
+                                <small>Товаров: <?= count($order['cart'] ?? []) ?></small>
+                            </td>
+                            <td><strong><?= htmlspecialchars($order['total'] ?? '0 ₽') ?></strong></td>
+                        
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+
     <script>
         // Переключение вкладок
         function showTab(tabName) {

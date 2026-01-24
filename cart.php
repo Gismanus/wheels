@@ -40,15 +40,15 @@ include 'components/header.php';
                 <h3 class="order-form__title">Данные для заказа</h3>
 
                 <div class="order-form__field">
-                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="text" name="name" placeholder="Ваше имя">
                 </div>
 
                 <div class="order-form__field">
-                    <input type="tel" name="phone" placeholder="Телефон" required>
+                    <input type="tel" name="phone" placeholder="Телефон">
                 </div>
 
                 <div class="order-form__field">
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="comment" name="email" placeholder="Email">
                 </div>
 
                 <div class="order-form__field">
@@ -62,7 +62,7 @@ include 'components/header.php';
             </form>
         </div>
     </div>
-</main> 
+</main>
 <?php include 'components/footer.php'; ?>
 
 <script src="/js/cart.js"></script>

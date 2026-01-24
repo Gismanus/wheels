@@ -64,21 +64,21 @@ $(document).ready(function () {
         var $submitBtn = $form.find('button[type="submit"]');
 
         // Проверяем обязательные поля
-        var isValid = true;
-        $form.find('[required]').each(function () {
-            if (!$(this).val().trim()) {
-                isValid = false;
-                $(this).addClass('error');
-            } else {
-                $(this).removeClass('error');
-            }
-        });
+        // var isValid = true;
+        // $form.find('[required]').each(function () {
+        //     if (!$(this).val().trim()) {
+        //         isValid = false;
+        //         $(this).addClass('error');
+        //     } else {
+        //         $(this).removeClass('error');
+        //     }
+        // });
 
-        if (!isValid) {
-            alert('Пожалуйста, заполните все обязательные поля');
-            isFormSubmitting = false;
-            return false;
-        }
+        // if (!isValid) {
+        //     alert('Пожалуйста, заполните все обязательные поля');
+        //     isFormSubmitting = false;
+        //     return false;
+        // }
 
         // Сохраняем оригинальный текст кнопки
         var originalText = $submitBtn.text();
