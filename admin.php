@@ -447,6 +447,7 @@ $totalRevenue = array_reduce($orders, function($sum, $order) {
         // Автоматическое обновление каждые 30 секунд
         setTimeout(() => location.reload(), 30000);
     </script>
+    <script></script>
 </body>
 
 </html>
