@@ -23,6 +23,8 @@ $totalRevenue = array_reduce($orders, function($sum, $order) {
 
 <head>
     <title>Админка</title>
+    <!-- Подключаем jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Базовые стили */
         body {
@@ -46,6 +48,11 @@ $totalRevenue = array_reduce($orders, function($sum, $order) {
             margin-right: 5px;
             background: #f5f5f5;
             flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
         }
 
         .tab.active {
@@ -187,34 +194,6 @@ $totalRevenue = array_reduce($orders, function($sum, $order) {
         }
 
         /* СТИЛИ ДЛЯ ЗАКАЗОВ */
-        .order-status {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .status-new {
-            background: #cfe2ff;
-            color: #084298;
-        }
-
-        .status-processing {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .status-completed {
-            background: #d1e7dd;
-            color: #0f5132;
-        }
-
-        .status-cancelled {
-            background: #f8d7da;
-            color: #842029;
-        }
-
         .order-items-summary {
             font-size: 0.9em;
             color: #666;
@@ -264,9 +243,9 @@ $totalRevenue = array_reduce($orders, function($sum, $order) {
 
     <!-- Вкладки -->
     <div class="tabs">
-        <div class="tab active" onclick="showTab('feedback')">📋 Заявки (<?= count($feedback) ?>)</div>
-        <div class="tab" onclick="showTab('products')">🛒 Товары (<?= count($products) ?>)</div>
-        <div class="tab" onclick="showTab('orders')">📦 Заказы (<?= count($orders) ?>)</div>
+        <div class="tab active" data-tab="feedback">📋 Заявки (<?= count($feedback) ?>)</div>
+        <div class="tab" data-tab="products">🛒 Товары (<?= count($products) ?>)</div>
+        
     </div>
 
     <!-- Вкладка 1: Заявки -->
@@ -355,99 +334,27 @@ $totalRevenue = array_reduce($orders, function($sum, $order) {
         <?php endif; ?>
     </div>
 
-    <!-- Вкладка 3: Заказы -->
-    <div id="orders-tab" class="tab-content">
-        <h2>Заказы</h2>
-        
-        <?php if (empty($orders)): ?>
-            <p class="empty">Нет заказов.</p>
-        <?php else: ?>
-            <!-- Статистика -->
-            <div class="orders-stats">
-                <div class="stat-card">
-                    <span class="stat-value"><?= count($orders) ?></span>
-                    <span class="stat-label">Всего заказов</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value"><?= count($newOrders) ?></span>
-                    <span class="stat-label">Новые</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value"><?= number_format($totalRevenue, 0, '', ' ') ?> ₽</span>
-                    <span class="stat-label">Общая сумма</span>
-                </div>
-            </div>
-
-            <!-- Таблица заказов -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Дата</th>
-                        <th>Клиент</th>
-                        <th>Контакты</th>
-                        <th>Состав заказа</th>
-                        <th>Сумма</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach (array_reverse($orders) as $order): 
-                        $status = $order['status'] ?? 'new';
-                        $statusClass = 'status-' . $status;
-                    ?>
-                        <tr>
-                            <td><strong>#<?= $order['id'] ?? '' ?></strong></td>
-                            <td><?= htmlspecialchars($order['date'] ?? '') ?></td>
-                            <td>
-                                <strong><?= htmlspecialchars($order['customer']['name'] ?? '') ?></strong><br>
-                                <?= htmlspecialchars($order['customer']['email'] ?? '') ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($order['customer']['phone'] ?? '') ?><br>
-                                <?php if (!empty($order['customer']['comment'])): ?>
-                                    <small style="color:#666;"><?= htmlspecialchars($order['customer']['comment']) ?></small>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <div class="order-items-summary">
-                                    <?php foreach ($order['cart'] ?? [] as $item): ?>
-                                        <span>
-                                            <?= htmlspecialchars($item['title'] ?? '') ?> × <?= $item['quantity'] ?? 1 ?>
-                                        </span>
-                                    <?php endforeach; ?>
-                                </div>
-                                <small>Товаров: <?= count($order['cart'] ?? []) ?></small>
-                            </td>
-                            <td><strong><?= htmlspecialchars($order['total'] ?? '0 ₽') ?></strong></td>
-                        
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </div>
-
     <script>
-        // Переключение вкладок
-        function showTab(tabName) {
-            // Скрыть все вкладки
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
+        $(document).ready(function() {
+            // Переключение вкладок с jQuery
+            $('.tab').on('click', function() {
+                var tabName = $(this).data('tab');
+                
+                // Убираем активный класс у всех вкладок
+                $('.tab').removeClass('active');
+                $('.tab-content').removeClass('active');
+                
+                // Добавляем активный класс текущей вкладке
+                $(this).addClass('active');
+                $('#' + tabName + '-tab').addClass('active');
             });
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Показать нужную вкладку
-            document.getElementById(tabName + '-tab').classList.add('active');
-            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
-        }
-
-        // Автоматическое обновление каждые 30 секунд
-        setTimeout(() => location.reload(), 30000);
+            
+            // Автообновление каждые 30 секунд
+            setTimeout(function() {
+                location.reload();
+            }, 30000);
+        });
     </script>
-    <script></script>
 </body>
 
 </html>

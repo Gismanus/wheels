@@ -79,9 +79,7 @@ $(document).ready(function () {
                                 Подробнее
                                 <span class="arrow">→</span>
                             </a>
-                            <button class="catalog-card__cart-btn" data-id="${product.id}">
-                                <span class="icon icon_cart"></span>
-                            </button>
+                           
                         </div>
                     </div>
                 `;
