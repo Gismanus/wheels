@@ -17,6 +17,50 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
     $num = preg_replace('/[^\d]/', '', $total);
     return $sum + intval($num);
 }, 0);
+
+// Получаем список изображений из папки products и всех подпапок
+function scanAllImages($dir, $baseDir = '')
+{
+    $images = [];
+    if (!is_dir($dir)) return $images;
+
+    $files = scandir($dir);
+    foreach ($files as $file) {
+        if ($file === '.' || $file === '..') continue;
+
+        $fullPath = $dir . '/' . $file;
+        $relativePath = ($baseDir ? $baseDir . '/' : '') . $file;
+
+        if (is_dir($fullPath)) {
+            $subImages = scanAllImages($fullPath, $relativePath);
+            $images = array_merge($images, $subImages);
+        } else {
+            // Проверяем расширение файла
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'svg', 'ico', 'avif'];
+
+            if (in_array($ext, $imageExtensions)) {
+                $images[] = 'products/' . $relativePath;
+            }
+        }
+    }
+    return $images;
+}
+
+$imagesDir = __DIR__ . '/products/';
+$images = scanAllImages($imagesDir);
+
+// Группируем по папкам
+$groupedImages = [];
+foreach ($images as $image) {
+    $parts = explode('/', $image);
+    if (count($parts) > 2) {
+        $folder = $parts[1];
+        $groupedImages[$folder][] = $image;
+    } else {
+        $groupedImages['корень'][] = $image;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,209 +69,8 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
     <title>Админка</title>
     <!-- Подключаем jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        /* Базовые стили */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+    <link href="/styles/admin-page.css" type="text/css" rel="stylesheet">
 
-        /* Вкладки */
-        .tabs {
-            display: flex;
-            border-bottom: 2px solid #ccc;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .tab {
-            padding: 12px 24px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            border-bottom: none;
-            margin-right: 5px;
-            background: #f5f5f5;
-            flex-shrink: 0;
-            transition: background 0.2s;
-        }
-
-        .tab:hover {
-            background: #e9ecef;
-        }
-
-        .tab.active {
-            background: white;
-            font-weight: bold;
-            border-bottom: 2px solid white;
-        }
-
-        /* Таблицы */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background: #f8f9fa;
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background: #f9f9f9;
-        }
-
-        /* Специфичные стили для important_values */
-        .important-values-table th:nth-child(1) {
-            width: 25%;
-        }
-
-        .important-values-table th:nth-child(2) {
-            width: 25%;
-        }
-
-        .important-values-table th:nth-child(3) {
-            width: 50%;
-        }
-
-        /* Статус пустых данных */
-        .empty {
-            color: #666;
-            font-style: italic;
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* СТИЛИ ДЛЯ ЗАКАЗОВ */
-        .order-items-summary {
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        .order-items-summary span {
-            display: inline-block;
-            margin-right: 10px;
-            background: #f8f9fa;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        /* Статистика заказов */
-        .orders-stats {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: white;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 15px;
-            min-width: 150px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            display: block;
-            color: #2C3E50;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #6c757d;
-        }
-
-        /* СТИЛИ ДЛЯ ФОРМЫ ДОБАВЛЕНИЯ ТОВАРА */
-        .add-product-form {
-            max-width: 800px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .form-section {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 4px solid #007bff;
-        }
-
-        .form-section h3 {
-            margin-top: 0;
-            color: #007bff;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
-        .form-actions {
-            margin-top: 30px;
-            text-align: right;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background: #007bff;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #0056b3;
-        }
-    </style>
 </head>
 
 <body>
@@ -238,6 +81,9 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
         <div class="tab active" data-tab="feedback">📋 Заявки (<?= count($feedback) ?>)</div>
         <div class="tab" data-tab="products">🛒 Товары (<?= count($products) ?>)</div>
         <div class="tab" data-tab="add-product">📥 Добавить товар</div>
+        <button onclick="location.reload()" style="margin-left: auto; padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            🔄 Обновить
+        </button>
     </div>
 
     <!-- Вкладка 1: Заявки -->
@@ -271,8 +117,71 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
 
     <!-- Вкладка 2: Товары -->
     <div id="products-tab" class="tab-content">
-        <h2>Товары</h2>
-        <p class="empty">Таблица товаров временно скрыта для переработки.</p>
+        <h2>Список товаров</h2>
+
+        <?php if (empty($products)): ?>
+            <p class="empty">Нет товаров в базе.</p>
+        <?php else: ?>
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">Фото</th>
+                        <th style="width: 120px;">Код изделия</th>
+                        <th>Название</th>
+                        <th style="width: 100px;">Цена</th>
+                        <th style="width: 150px;">Категория</th>
+                        <th style="width: 100px;">Артикул</th>
+                        <th style="width: 120px;">Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach (array_reverse($products) as $product):
+                        $info = $product['Product_creation']['Product_information'] ?? [];
+                        $mainImage = $product['main_image'] ?? '';
+                    ?>
+                        <tr data-id="<?= $product['id'] ?? '' ?>">
+                            <td>
+                                <?php if ($mainImage): ?>
+                                    <img src="<?= htmlspecialchars($mainImage) ?>"
+                                        alt="Товар <?= $product['id'] ?>"
+                                        style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                <?php else: ?>
+                                    <div style="width: 60px; height: 60px; background: #f0f0f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #999;">
+                                        Нет фото
+                                    </div>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <strong><?= htmlspecialchars($product['code'] ?? '') ?></strong>
+                            </td>
+                            <td>
+                                <div style="font-weight: 600;"><?= htmlspecialchars($info['Name'] ?? 'Без названия') ?></div>
+                                <?php if (isset($product['characteristics'])): ?>
+                                    <small style="color: #666; font-size: 0.85em;">
+                                        <?= count($product['characteristics']['Основные характеристики'] ?? []) + count($product['characteristics']['Дополнительные характеристики'] ?? []) ?> характеристик
+                                    </small>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= htmlspecialchars($info['Price'] ?? '—') ?></td>
+                            <td><?= htmlspecialchars($info['Category_and_type'] ?? '—') ?></td>
+                            <td><?= htmlspecialchars($info['SKU'] ?? '—') ?></td>
+                            <td>
+                                <button class="btn-action view-btn"
+                                    data-id="<?= $product['id'] ?? '' ?>"
+                                    style="background: #17a2b8; color: white; padding: 5px 10px; font-size: 0.85em; margin-bottom: 5px;">
+                                    👁️ Просмотр
+                                </button>
+                                <button class="btn-action delete-btn"
+                                    data-id="<?= $product['id'] ?? '' ?>"
+                                    style="background: #dc3545; color: white; padding: 5px 10px; font-size: 0.85em;">
+                                    🗑️ Удалить
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
     </div>
 
     <!-- Вкладка 3: Добавить товар -->
@@ -289,11 +198,50 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
                     </div>
                     <div class="form-group">
                         <label for="code">Код товара (code)</label>
-                        <input type="text" id="code" name="code" required>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="code" name="code" required style="flex: 1;">
+                            <select id="code_selector" style="width: 250px; padding: 8px;">
+                                <option value="">Выберите код...</option>
+                                <optgroup label="Группа 1">
+                                    <option value="07-01-01">07-01-01</option>
+                                    <option value="07-03-01">07-03-01</option>
+                                    <option value="07-02-01">07-02-01</option>
+                                </optgroup>
+                                <optgroup label="Группа 2">
+                                    <option value="06-01-02">06-01-02</option>
+                                    <option value="06-04-01">06-04-01</option>
+                                    <option value="06-11-01">06-11-01</option>
+                                    <option value="06-11-02">06-11-02</option>
+                                    <option value="06-04-05">06-04-05</option>
+                                </optgroup>
+                                <optgroup label="Группа 3">
+                                    <option value="23-01-01">23-01-01</option>
+                                </optgroup>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="main_image">URL главной картинки (main_image)</label>
-                        <input type="text" id="main_image" name="main_image">
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="main_image" name="main_image" style="flex: 1;">
+                            <select id="image_selector" style="width: 250px; padding: 8px;">
+                                <option value="">Выберите изображение...</option>
+                                <?php foreach ($groupedImages as $folder => $folderImages): ?>
+                                    <optgroup label="<?= htmlspecialchars($folder === 'корень' ? 'В корне' : $folder) ?>">
+                                        <?php foreach ($folderImages as $image): ?>
+                                            <option value="<?= htmlspecialchars($image) ?>">
+                                                <?= htmlspecialchars(basename($image)) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </optgroup>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <?php if (!empty($images)): ?>
+                            <div id="image_preview" style="display: none;">
+                                <img src="" alt="Preview">
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -301,31 +249,28 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
                 <div class="form-section">
                     <h3>Информация о товаре (Product information)</h3>
                     <div class="form-group">
-                        <label for="name">Название (Name)</label>
-                        <input type="text" id="name" name="Product_creation[Product_information][Name]" required>
+                        <label for="name">Название</label>
+                        <input type="text" id="name" name="Product_information[Name]">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="category">Категория и тип (Category and type)</label>
-                            <input type="text" id="category" name="Product_creation[Product_information][Category_and_type]">
+                            <input type="text" id="category" name="Product_information[Category_and_type]">
                         </div>
                         <div class="form-group">
                             <label for="sku">Артикул (SKU)</label>
-                            <input type="text" id="sku" name="Product_creation[Product_information][SKU]">
+                            <input type="text" id="sku" name="Product_information[SKU]">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="price">Цена (Price)</label>
-                        <input type="text" id="price" name="Product_creation[Product_information][Price]" required>
+                        <input type="text" id="price" name="Product_information[Price]" required>
                     </div>
                 </div>
 
                 <!-- Dimensions and weight -->
-                <!-- Dimensions and weight -->
                 <div class="form-section">
-                    <h3>Размеры и вес (Dimensions and weight)</h3>
-
-                    <!-- Поле для парсинга -->
+                    <h3>Размеры и вес (Dimensions and weight) для логистики</h3>
                     <div class="form-group">
                         <label for="parse_string">Автозаполнение (введите строку для парсинга)</label>
                         <input type="text" id="parse_string" name="parse_string"
@@ -344,152 +289,82 @@ $totalRevenue = array_reduce($orders, function ($sum, $order) {
                             Формат: Вес: ... Габариты: ... x ... x ... Объем: ...
                         </small>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="width">Ширина (Width)</label>
-                            <input type="text" id="width" name="Product_creation[Dimensions_and_weight][Width]">
+                            <input type="text" id="width" name="Dimensions_and_weight[Width]">
                         </div>
                         <div class="form-group">
                             <label for="height">Высота (Height)</label>
-                            <input type="text" id="height" name="Product_creation[Dimensions_and_weight][Height]">
+                            <input type="text" id="height" name="Dimensions_and_weight[Height]">
                         </div>
                         <div class="form-group">
                             <label for="length">Длина (Length)</label>
-                            <input type="text" id="length" name="Product_creation[Dimensions_and_weight][Length]">
+                            <input type="text" id="length" name="Dimensions_and_weight[Length]">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="weight">Вес (Weight)</label>
-                            <input type="text" id="weight" name="Product_creation[Dimensions_and_weight][Weight]">
+                            <input type="text" id="weight" name="Dimensions_and_weight[Weight]">
                         </div>
                         <div class="form-group">
                             <label for="volume">Объём (Volume)</label>
-                            <input type="text" id="volume" name="Product_creation[Dimensions_and_weight][Volume]">
+                            <input type="text" id="volume" name="Dimensions_and_weight[Volume]">
                         </div>
                     </div>
                 </div>
 
+                <!-- Парсинг HTML характеристик -->
+                <div class="form-section">
+                    <h3>Парсинг характеристик из HTML</h3>
+
+                    <!-- Поле для URL -->
+                    <div class="form-group">
+                        <label for="html_url">URL страницы с характеристиками</label>
+                        <input type="text" id="html_url" name="html_url"
+                            placeholder="https://example.com/product-page"
+                            style="margin-bottom: 10px;">
+                        <button type="button" id="parse-url-btn" class="btn"
+                            style="background: #17a2b8; color: white; padding: 8px 16px;">
+                            🌐 Загрузить с сайта
+                        </button>
+                        <small style="display: block; color: #666; margin-top: 5px;">
+                            Парсер найдет блок с class="specifications__info" на указанной странице
+                        </small>
+                    </div>
+
+                    <!-- ИЛИ: поле для ручного ввода HTML -->
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="html_input">Или вставьте HTML код вручную</label>
+                        <textarea id="html_input" name="html_input" rows="8"
+                            placeholder="<div class='specifications__info'>..."></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button type="button" id="parse-html-btn" class="btn"
+                            style="background: #28a745; color: white; padding: 10px 20px; flex: 1;">
+                            📋 Проанализировать HTML код
+                        </button>
+                    </div>
+
+                    <div id="parsed-result" style="margin-top: 20px; display: none;">
+                        <h4>Результат парсинга:</h4>
+                        <div id="result-display" style="background: #f8f9fa; padding: 15px; border-radius: 5px; max-height: 300px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Добавить товар</button>
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">
+                        💾 Добавить товар в базу
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            // Переключение вкладок с jQuery
-            $('.tab').on('click', function() {
-                var tabName = $(this).data('tab');
+    <script src="js/adminScript.js">
 
-                // Убираем активный класс у всех вкладок
-                $('.tab').removeClass('active');
-                $('.tab-content').removeClass('active');
-
-                // Добавляем активный класс текущей вкладке
-                $(this).addClass('active');
-                $('#' + tabName + '-tab').addClass('active');
-            });
-
-            // Обработка формы добавления товара
-            $('#product-form').on('submit', function(e) {
-                e.preventDefault();
-                alert('Форма готова. Логика сохранения будет добавлена после настройки структуры JSON.');
-                // Здесь будет AJAX запрос для сохранения
-            });
-
-            // Автообновление каждые 30 секунд
-
-        });
-
-        // Функция парсинга строки с характеристиками
-        function parseDimensionsString(str) {
-            const result = {
-                weight: '',
-                width: '',
-                height: '',
-                length: '',
-                volume: ''
-            };
-
-            console.log('Парсим строку:', str);
-
-            // Парсим вес
-            const weightMatch = str.match(/Вес[:\s]+([\d\.]+)\s*([а-яa-z]+)?/i);
-            if (weightMatch) {
-                result.weight = weightMatch[1] + (weightMatch[2] ? ' ' + weightMatch[2] : ' кг');
-                console.log('Найден вес:', result.weight);
-            }
-
-            // Парсим габариты
-            const dimMatch = str.match(/([\d\.]+)[^\d\.]*x[^\d\.]*([\d\.]+)[^\d\.]*x[^\d\.]*([\d\.]+)/i);
-            if (dimMatch) {
-                console.log('Найдены габариты:', dimMatch[1], dimMatch[2], dimMatch[3]);
-
-                // Определяем единицы измерения
-                let unit = 'м';
-                const unitMatch = str.match(/([\d\.]+[^\d\.]*x[\d\.]+[^\d\.]*x[\d\.]+[^\d\.]*)(м|см|мм|m|cm|mm)/i);
-                if (unitMatch && unitMatch[2]) {
-                    unit = unitMatch[2].toLowerCase();
-                }
-
-                // Конвертируем значения в сантиметры если нужно
-                const convertToCm = $('#convert_to_cm').is(':checked');
-
-                const dimensions = [
-                    parseFloat(dimMatch[1]), // длина (0.9)
-                    parseFloat(dimMatch[2]), // ширина (0.8) 
-                    parseFloat(dimMatch[3]) // высота (0.3)
-                ];
-
-                if (unit === 'м' || unit === 'm') {
-                    result.length = convertToCm ? (dimensions[0] * 100) + ' см' : dimensions[0] + ' м';
-                    result.width = convertToCm ? (dimensions[1] * 100) + ' см' : dimensions[1] + ' м';
-                    result.height = convertToCm ? (dimensions[2] * 100) + ' см' : dimensions[2] + ' м';
-                } else {
-                    result.length = dimensions[0] + ' ' + unit;
-                    result.width = dimensions[1] + ' ' + unit;
-                    result.height = dimensions[2] + ' ' + unit;
-                }
-            }
-
-            // Парсим объем
-            const volumeMatch = str.match(/Объем[:\s]+([\d\.]+)\s*([а-яa-z\d]+)?/i);
-            if (volumeMatch) {
-                result.volume = volumeMatch[1] + (volumeMatch[2] ? ' ' + volumeMatch[2] : ' м³');
-                console.log('Найден объем:', result.volume);
-            }
-
-            return result;
-        }
-
-        // Обработчик кнопки парсинга
-        $('#parse-btn').on('click', function() {
-            const str = $('#parse_string').val();
-            if (!str) {
-                alert('Введите строку для парсинга');
-                return;
-            }
-
-            const parsed = parseDimensionsString(str);
-
-            // Заполняем поля формы
-            $('#weight').val(parsed.weight);
-            $('#width').val(parsed.width);
-            $('#height').val(parsed.height);
-            $('#length').val(parsed.length);
-            $('#volume').val(parsed.volume);
-
-            console.log('Результат парсинга:', parsed);
-
-            if (parsed.width || parsed.height || parsed.length || parsed.weight || parsed.volume) {
-                alert('Поля заполнены автоматически!');
-            } else {
-                alert('Не удалось распознать данные. Проверьте формат строки.');
-            }
-        });
     </script>
 </body>
 

@@ -1,0 +1,286 @@
+/* Базовые стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 12px 24px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin-right: 5px;
+    background: #f5f5f5;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.tab:hover {
+    background: #e9ecef;
+}
+
+.tab.active {
+    background: white;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+}
+
+/* Таблицы */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+tr:hover {
+    background: #f9f9f9;
+}
+
+/* Специфичные стили для important_values */
+.important-values-table th:nth-child(1) {
+    width: 25%;
+}
+
+.important-values-table th:nth-child(2) {
+    width: 25%;
+}
+
+.important-values-table th:nth-child(3) {
+    width: 50%;
+}
+
+/* Статус пустых данных */
+.empty {
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+}
+
+/* СТИЛИ ДЛЯ ЗАКАЗОВ */
+.order-items-summary {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.order-items-summary span {
+    display: inline-block;
+    margin-right: 10px;
+    background: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Статистика заказов */
+.orders-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    display: block;
+    color: #2C3E50;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* СТИЛИ ДЛЯ ФОРМЫ ДОБАВЛЕНИЯ ТОВАРА */
+.add-product-form {
+    max-width: 800px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+}
+
+.form-section h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Стили для выбора изображений */
+#image_preview {
+    margin-top: 10px;
+}
+
+#image_preview img {
+    max-width: 200px;
+    max-height: 150px;
+    border: 1px solid #ddd;
+}
+
+/* Стили для таблицы товаров */
+.products-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.products-table th {
+    background: #2c3e50;
+    color: white;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.products-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.products-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.products-table tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-action {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: block;
+    width: 100%;
+}
+
+.btn-action:hover {
+    opacity: 0.9;
+}
+
+.view-btn {
+    background: #17a2b8 !important;
+}
+
+.delete-btn {
+    background: #dc3545 !important;
+}
+
+/* Стили для спиннера */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
