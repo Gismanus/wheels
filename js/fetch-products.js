@@ -73,6 +73,7 @@ $(document).ready(function () {
             return res.json();
         })
         .then(products => {
+            
             if (!Array.isArray(products) || products.length === 0) {
                 grid.innerHTML = '<p class="empty">Товары не найдены</p>';
                 return;
@@ -82,9 +83,9 @@ $(document).ready(function () {
                 const priceDisplay = product.Product_information?.Price || 'Цена по запросу';
                 const title = product.Product_information?.Name || 'Кресло-коляска';
                 const category = product.Product_information?.['Category_and_type'] || '';
-                const mainImage = product.main_image || 'placeholder.jpg';
+                const mainImage = product.main_image;
                 const isProductFavorite = isFavorite(product.id);
-
+                
                 // Получаем теги
                 const tags = product.tags || {};
                 const tagLabels = [];
@@ -143,7 +144,7 @@ $(document).ready(function () {
             }).join('');
 
             // Обработчики кнопок избранного
-            document.querySelectorAll('.catalog-card__favorite-btn').forEach(btn => {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation(); // Останавливаем всплытие, чтобы не сработала ссылка карточки

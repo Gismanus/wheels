@@ -8,66 +8,80 @@ include 'components/header.php';
     <!-- Контент загрузится через JS -->
 </main>
 
+
+
 <?php include 'components/footer.php'; ?>
+
 <script>
-    // Получаем ID товара из URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id') || 1;
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Получаем ID товара из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || 1; // fallback на товар 1
 
-    fetch('products.json')
-        .then(res => res.json())
-        .then(products => {
-            const product = products.find(p => p.id == productId) || products[0];
-            const container = document.getElementById('product-container');
+        // 2. Загружаем данные товара
+        fetch('products.json')
+            .then(res => res.json())
+            .then(products => {
+                // 3. Находим нужный товар по ID
+                const product = products.find(p => p.id == productId) || products[0];
 
-            // Генерация характеристик по группам
-            const specsHTML = product.specs ? Object.entries(product.specs).map(([groupName, groupItems]) => `
-                <div class="specs-group">
-                    <h3>${groupName}</h3>
-                    <table class="specs-table">
-                        ${Object.entries(groupItems).map(([key, value]) => `
-                            <tr>
-                                <td class="specs-key">${key}</td>
-                                <td class="specs-value">${value}</td>
-                            </tr>
-                        `).join('')}
-                    </table>
+                // 4. Рендерим страницу
+                const container = document.getElementById('product-container');
+
+                container.innerHTML = `
+                <!-- Левая колонка: изображение -->
+                <div class="product-gallery">
+                    <img src="${product?.main_image}" 
+                         alt="${product.Product_information?.Name || 'Товар'}" 
+                         class="product-main-image">
                 </div>
-            `).join('') : '';
-
-            container.innerHTML = `
-            <div class="product-page__gallery">
-                <img src="${product.image}" alt="${product.title}" class="product-page__main-image">
-                <div class="product-page__thumbnails">
-                    ${product.thumbnails ? product.thumbnails.map(src => 
-                        `<img src="${src}" alt="Миниатюра">`
-                    ).join('') : ''}
-                </div>
-            </div>
-            <div class="product-page__info">
-                <h1 class="product-page__title">${product.title}</h1>
-                <p class="product-page__price">${product.price}</p>
                 
-                <details class="product-specs">
-                    <summary><h2>Характеристики</h2></summary>
-                    ${specsHTML}
-                </details>
+                <!-- Правая колонка: информация -->
+                <div class="product-info">
+                    <!-- Категория и тип -->
+                    
+                    
+<div class="product-info__header">
+    <div class="product-category">
+        ${product.Product_information?.['Category_and_type'] || ''}
+    </div>
+    
+    <!-- Кнопка избранного (сердечко) -->
+    <button class="product-favorite-btn" 
+            data-id="${product.id}"
+            aria-label="Добавить в избранное">
+        <div class="product-favorite-icon"></div>
+    </button>
+</div>
 
-                <div class="product-features">
-                    <h2>Особенности</h2>
-                    <ul class="features-list">
-                        ${product.features ? product.features.map(f => `<li>${f}</li>`).join('') : ''}
-                    </ul>
+                    <!-- Название товара -->
+                    <h1 class="product-title">${product.Product_information?.Name || 'Кресло-коляска'}</h1>
+                    
+                    <!-- Цена -->
+                    <div class="product-price">${product.Product_information?.Price || 'Цена по запросу'}</div>
+                    
+                    <!-- Размер -->
+                    <div class="product-size">
+                        Размер: ${product.size || 'универсальный'}
+                    </div>
+                    
+                    <!-- Кнопка добавления в корзину -->
+                    <button class="product-add-to-cart">Добавить в корзину</button>
                 </div>
+            `;
+            })
 
-                <button class="product-page__buy">Заказать</button>
-                
-                <div class="product-page__description">
-                    <h2>Описание</h2>
-                    <p>${product.description || ''}</p>
-                </div>
-            </div>
-        `;
-        })
-        .catch(err => console.error('Ошибка загрузки товара:', err));
+            .catch(error => {
+                console.error('Ошибка загрузки товара:', error);
+                document.getElementById('product-container').innerHTML = '<p>Товар не найден</p>';
+            });
+        document.querySelectorAll('.product-favorite-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Останавливаем всплытие, чтобы не сработала ссылка карточки
+                const productId = this.dataset.id;
+                toggleFavorite(productId);
+            });
+        });
+    });
 </script>
