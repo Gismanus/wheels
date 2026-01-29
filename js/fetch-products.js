@@ -119,7 +119,7 @@ $(document).ready(function () {
                            
                             
                             <!-- Цена -->
-                            <p class="catalog-card__price">${priceDisplay}</p>
+                            <p class="catalog-card__price">${priceDisplay} ₽</p>
                             
                             <!-- Категория -->
                             ${category ? `<p class="catalog-card__category">${category}</p>` : ''}

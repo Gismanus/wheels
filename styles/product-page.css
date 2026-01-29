@@ -59,7 +59,7 @@
     transition: background-color 0.3s;
 }
 
-.product-favorite-btn:hover .product-favorite-icon {
+/* .product-favorite-btn:hover .product-favorite-icon {
     background-color: #FF6B6B;
 }
 
@@ -69,7 +69,7 @@
 
 .product-favorite-btn.active:hover .product-favorite-icon {
     background-color: #FFF;
-}
+} */
 
 
 /* Левая колонка: галерея */
