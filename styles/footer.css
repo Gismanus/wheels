@@ -42,14 +42,13 @@
 }
 
 .footer__logo {
-    width: 100%;
+    width: 80%;
     /* На всю ширину колонки */
     max-width: 200px;
     /* Ограничение, если нужно */
     height: 70px;
-    background: url('/images/logo.svg') no-repeat left center;
+    background: url('/images/logo.svg') no-repeat center center;
     background-size: contain;
-    margin-bottom: 15px;
 }
 
 .footer__badges {
@@ -61,7 +60,5 @@
 .footer__badge {
     width: 60px;
     height: 40px;
-
-
     border-radius: 4px;
 }
