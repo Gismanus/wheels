@@ -17,7 +17,7 @@
                     
                 </a>
                 <a href="product.php?id=2" class="product-card">
-                    <img src="/products/07-03-01_Ortonica_S2000/image_39.jpg" alt="" class="product-card__image"
+                    <img src="/products/07-03-01_Ortonica_S2000/main-image.jpg" alt="" class="product-card__image"
                         style="background: #fff; object-fit: contain;">
                     <h3>Коляска инвалидная</h3>
                     <p>C регулируемым сиденьем.</p>
