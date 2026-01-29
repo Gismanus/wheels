@@ -7,16 +7,23 @@ include 'components/header.php';
 <main class="product-page container" id="product-container">
     <!-- Контент загрузится через JS -->
 </main>
+<div class="product-specs">
+    <div class="container">
+        <h2>Характеристики</h2>
+        <div id="characteristics-table" class="characteristics-table">
+            <!-- Таблица загрузится через JS -->
+        </div>
+    </div>
+</div>
 
 
 
 <?php include 'components/footer.php'; ?>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // 1. Получаем ID товара из URL
         const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id') || 1; // fallback на товар 1
+        const productId = urlParams.get('id') || 1;
 
         // 2. Загружаем данные товара
         fetch('products.json')
@@ -25,160 +32,158 @@ include 'components/header.php';
                 // 3. Находим нужный товар по ID
                 const product = products.find(p => p.id == productId) || products[0];
 
-                // 4. Рендерим страницу
-                const container = document.getElementById('product-container');
+                // 4. Сохраняем глобально для всех функций
+                window.currentProduct = product;
 
-                container.innerHTML = `
-                <!-- Левая колонка: изображение -->
-                <div class="product-gallery">
-                    <img src="${product?.main_image}" 
-                         alt="${product.Product_information?.Name || 'Товар'}" 
-                         class="product-main-image">
-                </div>
-                
-                <!-- Правая колонка: информация -->
-                <div class="product-info">
-                    <!-- Категория и тип -->
-                    
-                    
-<div class="product-info__header">
-    <div class="product-category">
-        ${product.Product_information?.['Category_and_type'] || ''}
-    </div>
-    
-    <!-- Кнопка избранного (сердечко) -->
-    <button class="product-favorite-btn" 
-            data-id="${product.id}"
-            aria-label="Добавить в избранное">
-        <div class="product-favorite-icon"></div>
-    </button>
-</div>
+                // 5. Рендерим ОСНОВНУЮ часть страницы
+                renderProductMain(product);
 
-                    <!-- Название товара -->
-                    <h1 class="product-title">${product.Product_information?.Name || 'Кресло-коляска'}</h1>
-                    
-                    <!-- Цена -->
-                    <div class="product-price">${product.Product_information?.Price || 'Цена по запросу'} ₽</div>
-                    
-                    <!-- Размер -->
-                    <div class="product-size">
-                        Размер: ${product.size || 'универсальный'}
-                    </div>
-                    
-                    <!-- Кнопка добавления в корзину -->
-                    <button class="product-add-to-cart">Добавить в корзину</button>
-                </div>
-            `;
+                // 6. Рендерим ХАРАКТЕРИСТИКИ
+                renderProductCharacteristics(product);
+
+                // 7. Инициализируем остальные компоненты
+                initProductComponents();
             })
-
             .catch(error => {
                 console.error('Ошибка загрузки товара:', error);
                 document.getElementById('product-container').innerHTML = '<p>Товар не найден</p>';
             });
-    });
-    $(document).ready(function() {
-        // === ОБЩИЕ ФУНКЦИИ ИЗБРАННОГО (ДУБЛИРУЕМ ИЗ КАТАЛОГА) ===
-        const FAVORITES_KEY = 'favorites';
 
-        function getFavorites() {
-            return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+        // ===== ОСНОВНАЯ ЧАСТЬ СТРАНИЦЫ =====
+        function renderProductMain(product) {
+            const container = document.getElementById('product-container');
+            if (!container) return;
+
+            container.innerHTML = `
+            <div class="product-gallery">
+                <img src="${product?.main_image}" 
+                     alt="${product.Product_information?.Name || 'Товар'}" 
+                     class="product-main-image">
+            </div>
+            
+            <div class="product-info">
+                <div class="product-info__header">
+                    <div class="product-category">
+                        ${product.Product_information?.['Category_and_type'] || ''}
+                    </div>
+                    <button class="product-favorite-btn" 
+                            data-id="${product.id}"
+                            aria-label="Добавить в избранное">
+                        <div class="product-favorite-icon"></div>
+                    </button>
+                </div>
+
+                <h1 class="product-title">${product.Product_information?.Name || 'Кресло-коляска'}</h1>
+                <div class="product-price">${product.Product_information?.Price || 'Цена по запросу'} ₽</div>
+                
+                <div class="product-size">
+                    <div class="product-size__title">Размер:</div>
+                    <div class="product-size__options">
+                        ${product.sizes ? product.sizes.map(size => `
+                            <button class="product-size__option" data-size="${size}">${size}</button>
+                        `).join('') : `
+                            <button class="product-size__option active" data-size="универсальный">универсальный</button>
+                        `}
+                    </div>
+                </div>
+                
+                <button class="product-add-to-cart">Добавить в корзину</button>
+            </div>
+        `;
         }
 
-        function saveFavorites(favorites) {
-            localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-            updateFavoritesCounter();
-        }
+        // ===== ХАРАКТЕРИСТИКИ =====
+        function renderProductCharacteristics(product) {
+            const container = document.getElementById('characteristics-table');
+            if (!container) return;
 
-        function isFavorite(productId) {
-            const favorites = getFavorites();
-            return favorites.includes(productId);
-        }
+            const allCharacteristics = product.characteristics || {};
+            const keys = Object.keys(allCharacteristics);
 
-        function toggleFavorite(productId) {
-            const favorites = getFavorites();
-            const index = favorites.indexOf(productId);
-            const wasFavorite = index > -1;
-
-            if (wasFavorite) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(productId);
+            if (keys.length === 0) {
+                container.innerHTML = '<p class="no-data">Характеристики не указаны</p>';
+                return;
             }
 
-            saveFavorites(favorites);
-            updateFavoriteButton(productId, wasFavorite);
-            showNotification(wasFavorite ? 'Удалено из избранного' : 'Добавлено в избранное');
+            let finalHTML = '';
 
-            return !wasFavorite; // возвращает новое состояние
-        }
-
-        function updateFavoritesCounter() {
-            const favorites = getFavorites();
-            const totalItems = favorites.length;
-            const $counter = $('.favorites-count');
-            if ($counter.length) {
-                $counter.text(totalItems);
-                $counter.toggle(totalItems > 0);
-            }
-        }
-
-        function updateFavoriteButton(productId, wasFavorite) {
-            // Обновляем кнопку на ЭТОЙ странице
-            const $btn = $(`.favorite-btn[data-id="${productId}"]`);
-            if ($btn.length) {
-                $btn.toggleClass('active', !wasFavorite);
-                $btn.attr('aria-label', wasFavorite ? 'Добавить в избранное' : 'Удалить из избранного');
+            // Первая группа
+            if (keys[0]) {
+                finalHTML += '<div class="characteristics-group">';
+                finalHTML += `<h3>${keys[0]}</h3>`;
+                finalHTML += renderTable(allCharacteristics[keys[0]]);
+                finalHTML += '</div>';
             }
 
-            // Если на этой же странице есть другие кнопки с тем же ID (например, в рекомендованных)
-            $('.favorite-btn[data-id="' + productId + '"]').each(function() {
-                $(this).toggleClass('active', !wasFavorite)
-                    .attr('aria-label', wasFavorite ? 'Добавить в избранное' : 'Удалить из избранного');
+            // Вторая группа
+            if (keys[1]) {
+                finalHTML += '<div class="characteristics-group">';
+                finalHTML += `<h3>${keys[1]}</h3>`;
+                finalHTML += renderTable(allCharacteristics[keys[1]]);
+                finalHTML += '</div>';
+            }
+
+            container.innerHTML = finalHTML;
+        }
+
+        function renderTable(characteristics) {
+            if (!characteristics || typeof characteristics !== 'object') return '';
+
+            const entries = Object.entries(characteristics);
+            if (entries.length === 0) return '';
+
+            const half = Math.ceil(entries.length / 2);
+            const leftCol = entries.slice(0, half);
+            const rightCol = entries.slice(half);
+
+            let html = '<table class="characteristics-table"><tbody>';
+            const maxRows = Math.max(leftCol.length, rightCol.length);
+
+            for (let i = 0; i < maxRows; i++) {
+                html += '<tr>';
+
+                // Левая часть
+                if (leftCol[i]) {
+                    html += `<td class="specs-key">${leftCol[i][0]}</td>`;
+                    html += `<td class="specs-value">${leftCol[i][1]}</td>`;
+                } else {
+                    html += '<td class="specs-key"></td><td class="specs-value"></td>';
+                }
+
+                // Правая часть
+                if (rightCol[i]) {
+                    html += `<td class="specs-key">${rightCol[i][0]}</td>`;
+                    html += `<td class="specs-value">${rightCol[i][1]}</td>`;
+                } else {
+                    html += '<td class="specs-key"></td><td class="specs-value"></td>';
+                }
+
+                html += '</tr>';
+            }
+            html += '</tbody></table>';
+            return html;
+        }
+
+        // ===== ИНИЦИАЛИЗАЦИЯ КОМПОНЕНТОВ =====
+        function initProductComponents() {
+            // Размеры
+            $(document).on('click', '.product-size__option', function() {
+                const $this = $(this);
+                const size = $this.data('size');
+                $this.siblings().removeClass('active');
+                $this.addClass('active');
+                console.log('Выбран размер:', size);
             });
+
+            // Избранное (если нужно инициализировать состояние кнопки)
+            const favoriteBtn = document.querySelector('.product-favorite-btn');
+            if (favoriteBtn && window.isFavorite) {
+                const isFav = window.isFavorite(favoriteBtn.dataset.id);
+                if (isFav) {
+                    favoriteBtn.classList.add('active');
+                    favoriteBtn.setAttribute('aria-label', 'Удалить из избранного');
+                }
+            }
         }
-
-        function showNotification(message) {
-            // Можно сделать красивый toast вместо console.log
-            console.log('Избранное:', message);
-        }
-
-        // === ИНИЦИАЛИЗАЦИЯ СТРАНИЦЫ ТОВАРА ===
-
-        // 1. Обновляем счётчик избранного
-        updateFavoritesCounter();
-
-        // 2. Обработчик клика на сердечко
-        $(document).on('click', '.product-favorite-btn', function(e) {
-            e.preventDefault();
-            const $btn = $(this);
-            const productId = $btn.data('id');
-
-            if (!productId) return;
-
-            const newState = toggleFavorite(productId);
-
-            // Обновляем конкретную кнопку (опционально)
-            $btn.toggleClass('active', newState)
-                .attr('aria-label', newState ? 'Удалить из избранного' : 'Добавить в избранное');
-        });
-
-        // 3. Если на странице товара есть блок "Рекомендуемые товары"
-        // с кнопками избранного, они тоже будут работать
-        $(document).on('click', '.favorite-btn:not(.product-favorite-btn)', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const $btn = $(this);
-            const productId = $btn.data('id');
-
-            if (!productId) return;
-
-            toggleFavorite(productId);
-        });
-
-        // === ЭКСПОРТ ФУНКЦИЙ (ЧТОБЫ РАБОТАЛИ С КАТАЛОГОМ) ===
-        window.toggleFavorite = toggleFavorite;
-        window.getFavorites = getFavorites;
-        window.isFavorite = isFavorite;
-        window.updateFavoritesCounter = updateFavoritesCounter;
     });
 </script>

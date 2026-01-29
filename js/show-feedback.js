@@ -119,14 +119,14 @@ $(document).ready(function () {
         return false;
     });
     // Проверка существования элементов
-    console.log('Попап существует:', $('#feedback-popup').length);
-    console.log('Форма существует:', $('#feedback-form-about').length);
-    console.log('Кнопка submit существует:', $('#feedback-form-about button[type="submit"]').length);
-    console.log('jQuery версия:', $.fn.jquery);
+    // console.log('Попап существует:', $('#feedback-popup').length);
+    // console.log('Форма существует:', $('#feedback-form-about').length);
+    // console.log('Кнопка submit существует:', $('#feedback-form-about button[type="submit"]').length);
+    // console.log('jQuery версия:', $.fn.jquery);
 
     // Проверка обработчиков
     $('#feedback-form-about').on('test', function () { });
     var events = $._data($('#feedback-form-about')[0], 'events');
-    console.log('События на форме:', events ? Object.keys(events) : 'Нет событий');
+    // console.log('События на форме:', events ? Object.keys(events) : 'Нет событий');
 });
 

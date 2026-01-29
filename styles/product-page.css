@@ -59,19 +59,6 @@
     transition: background-color 0.3s;
 }
 
-/* .product-favorite-btn:hover .product-favorite-icon {
-    background-color: #FF6B6B;
-}
-
-.product-favorite-btn.active .product-favorite-icon {
-    background-color: #FFF;
-}
-
-.product-favorite-btn.active:hover .product-favorite-icon {
-    background-color: #FFF;
-} */
-
-
 /* Левая колонка: галерея */
 .product-gallery {
     background: #FFF;
@@ -120,14 +107,42 @@
 }
 
 .product-size {
-    font-size: 10px;
-    color: #2C3E50;
     margin-bottom: 30px;
-    padding: 12px 20px;
-    background: #F0F8FF;
-    border-radius: 8px;
+}
+
+.product-size__title {
+    font-size: 16px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-size__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-size__option {
+    padding: 10px 20px;
     border: 1px solid #E1F5FE;
-    display: inline-block;
+    background: white;
+    border-radius: 6px;
+    color: #2C3E50;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.product-size__option:hover {
+    border-color: #A7E7FE;
+    background: #F0F8FF;
+}
+
+.product-size__option.active {
+    background: #1A5276;
+    color: white;
+    border-color: #1A5276;
 }
 
 .product-add-to-cart {
@@ -148,7 +163,7 @@
     background: #2C3E50;
 }
 
-/* Адаптивность */
+/* Адаптивность страницы товара */
 @media (max-width: 900px) {
     .product-page {
         grid-template-columns: 1fr;
@@ -156,10 +171,150 @@
     }
 
     .product-title {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .product-price {
         font-size: 32px;
     }
+}
+
+/* ==================== СЕКЦИЯ ХАРАКТЕРИСТИК ==================== */
+.product-specs {
+    width: 100%;
+    margin: 60px 0 40px;
+}
+
+.product-specs .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.product-specs h2 {
+    font-size: 28px;
+    color: #2C3E50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Контейнер для таблиц */
+.characteristics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+/* Группа характеристик */
+
+.characteristics-group {
+    margin: 0 0 20px;
+}
+
+.characteristics-group h3 {
+    font-size: 22px;
+    color: #1A5276;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    padding: 20px;
+    border-bottom: 2px solid #E1F5FE;
+}
+
+/* Таблица */
+.characteristics-table {
+    margin: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #E1F5FE;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Строки таблицы */
+.characteristics-table tbody tr {
+    border-bottom: 1px solid #E1F5FE;
+    transition: background 0.2s;
+}
+
+.characteristics-table tbody tr:hover {
+    background: #F8FCFE;
+}
+
+.characteristics-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Колонки таблицы */
+.specs-key {
+    padding: 16px 20px;
+    width: 20%;
+    color: #2C3E50;
+    font-weight: 600;
+    background: #F7FBFF;
+    border-right: 1px solid #E1F5FE;
+}
+
+.specs-value {
+    padding: 16px 20px;
+    width: 30%;
+    color: #2C3E50;
+    border-right: 1px solid #E1F5FE;
+}
+
+/* Убираем границу у последней колонки в блоке */
+.characteristics-table td:nth-child(2),
+.characteristics-table td:nth-child(4) {
+    border-right: none;
+}
+
+/* Чередование фона строк */
+.characteristics-table tbody tr:nth-child(even) .specs-key {
+    background: #F0F8FF;
+}
+
+.characteristics-table tbody tr:nth-child(even) .specs-value {
+    background: #F8FCFF;
+}
+
+/* Адаптивность таблиц */
+@media (max-width: 768px) {
+    .characteristics-container {
+        gap: 30px;
+    }
+
+    .product-specs h2 {
+        font-size: 24px;
+    }
+
+    .characteristics-group h3 {
+        font-size: 20px;
+    }
+
+    .specs-key,
+    .specs-value {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    /* Горизонтальный скролл для таблиц на мобилках */
+    .product-specs {
+        overflow-x: auto;
+    }
+
+    .characteristics-table {
+        min-width: 600px;
+    }
+}
+
+/* Состояние "нет данных" */
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #7F8C8D;
+    font-size: 16px;
+    background: #F9F9F9;
+    border-radius: 8px;
+    border: 1px dashed #E1F5FE;
 }

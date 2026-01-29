@@ -15,7 +15,9 @@
             "Hit": true,
             "New": false
         },
-        "Pre-order": true,
+        "sizes": [
+            "универсальный"
+        ],
         "Dimensions_and_weight": {
             "Width": "900",
             "Height": "800",
@@ -76,6 +78,12 @@
             "SKU": "",
             "Price": "97000"
         },
+         "tags": {
+            "Pre-order": true,
+            "Sale": false,
+            "Hit": true,
+            "New": false
+        },
         "Dimensions_and_weight": {
             "Width": "800",
             "Height": "700",
@@ -83,6 +91,14 @@
             "Weight": "18000",
             "Volume": "0.45"
         },
+        "sizes": [
+            "35 см",
+            "38 см",
+            "40 см",
+            "43 см",
+            "45 см",
+            "48 см"
+        ],
         "characteristics": {
             "Основные характеристики": {
                 "Возрастная группа пользователей": "Детская; Взрослая",
