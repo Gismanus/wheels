@@ -11,19 +11,19 @@
             <a href="about.php">О нас</a>
             <a href="delivery.php">Доставка</a>
         </div>
-        
+
         <!-- <div class="footer__col">
                 <h3>Партнёрам</h3>
                 <a href="#">Сотрудничество</a>
                 <a href="#">Документы</a>
             </div> -->
         <div class="footer__col">
-            <div class="footer__logo"></div>
-            
+            <a href="https://tsr1group.ru/" class="footer__logo"></a>
+
             <div class="footer__badges">
-                <div class="footer__badge bage_steplife"></div>
-                <div class="footer__badge bage_simphony"></div>
-                <div class="footer__badge bage_armed"></div>
+                <a href="https://steplife.ru/" class="footer__badge bage_steplife"></a>
+                <a href="https://t.me/simfoniyapobedy" class="footer__badge bage_simphony"></a>
+                <a href="https://www.armed.ru/" class="footer__badge bage_armed"></a>
             </div>
 
         </div>
