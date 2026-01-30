@@ -223,7 +223,6 @@
 
 /* Таблица */
 .characteristics-table {
-    margin: 20px;
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #E1F5FE;
@@ -292,20 +291,61 @@
         font-size: 20px;
     }
 
+    /* ПЕРЕКЛЮЧАЕМСЯ НА 2 КОЛОНКИ */
+    .characteristics-table {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .characteristics-table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* 2 колонки вместо 4 */
+        border-bottom: 1px solid #E1F5FE;
+    }
+
+    /* Убираем чередующиеся ячейки справа */
+    .characteristics-table tbody tr td:nth-child(3),
+    .characteristics-table tbody tr td:nth-child(4) {
+        display: none;
+        /* Скрываем 3 и 4 колонку */
+    }
+
+    /* Переназначаем ширины для 2 колонок */
+    .characteristics-table .specs-key {
+        width: 40%;
+        /* Было 20% */
+        border-right: 1px solid #E1F5FE;
+    }
+
+    .characteristics-table .specs-value {
+        width: 60%;
+        /* Было 30% */
+        border-right: none;
+    }
+
+    /* Убираем правую границу у всех ячеек в мобилке */
+    .characteristics-table td {
+        border-right: none !important;
+    }
+
+    /* Чередование фона для строк (теперь вся строка) */
+    .characteristics-table tbody tr:nth-child(even) {
+        background: #F8FCFF;
+    }
+
+    .characteristics-table tbody tr:nth-child(even) .specs-key,
+    .characteristics-table tbody tr:nth-child(even) .specs-value {
+        background: transparent;
+    }
+
     .specs-key,
     .specs-value {
         padding: 12px 15px;
         font-size: 14px;
     }
 
-    /* Горизонтальный скролл для таблиц на мобилках */
-    .product-specs {
-        overflow-x: auto;
-    }
 
-    .characteristics-table {
-        min-width: 600px;
-    }
 }
 
 /* Состояние "нет данных" */
