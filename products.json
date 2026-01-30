@@ -267,5 +267,23 @@
                 "Подлокотники могут заменяться на грязезащитные щитки": "Нет"
             }
         }
+    },
+    {
+        "id": 5,
+        "code": "07-01-01",
+        "main_image": "products\/07-01-01_kolyaska_ortonica_delux_590\/main-image.jpg",
+        "Product_information": {
+            "Name": "ortonica delux 590",
+            "Category_and_type": "Кресло-коляска с ручным приводом",
+            "SKU": "",
+            "Price": "25890"
+        },
+        "Dimensions_and_weight": {
+            "Width": "800",
+            "Height": "300",
+            "Length": "900",
+            "Weight": "19500",
+            "Volume": "0.22"
+        }
     }
 ]
