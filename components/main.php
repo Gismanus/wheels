@@ -8,9 +8,9 @@
         <div class="container">
             <h2 class="products__title">Наши продукты</h2>
             <div class="products__list">
-                <a href="/product.php?id=4" class="product-card">
+                <a href="/product.php?id=6" class="product-card">
                     
-                        <img src="/images/image_36.png" alt="" class="product-card__image"
+                        <img src="products/06-01-02_trost_kr927_armed/main-image.png" alt="" class="product-card__image"
                             style="background: #fff; object-fit: contain;">
                         <h3>Трость опорная</h3>
                         <p>Лёгкая, манёвренная, для ежедневного использования.</p>
